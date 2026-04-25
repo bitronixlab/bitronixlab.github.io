@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bitronix Lab - Design, Teach, and Innovate in Embedded Systems and AI">
+    <meta name="keywords" content="embedded systems, AI, IoT, Arduino, microcontrollers, tutorials">
+    <title>Bitronix Lab - Embedded Systems & AI Innovation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-microchip"></i> Bitronix Lab
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="canvas"></canvas>
+        <div class="hero-content">
+            <h1>Bitronix Lab</h1>
+            <p>Design • Teach • Innovate</p>
+            <p style="font-size: 18px; color: #b0b0b0;">Embedded Systems & Artificial Intelligence</p>
+            <button class="cta-button" onclick="document.querySelector('.tutorials').scrollIntoView({behavior: 'smooth'})">
+                Explore Tutorials
+            </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Bitronix Lab</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>🚀 Our Mission</h3>
+                    <p>At Bitronix Lab, we are passionate about designing cutting-edge solutions in embedded systems and artificial intelligence. We believe in making complex technology accessible through hands-on learning and innovation.</p>
+                    <h3>🎓 What We Teach</h3>
+                    <p>From Arduino basics to advanced RTOS, from IoT systems to machine learning on edge devices, we provide comprehensive education for developers and enthusiasts.</p>
+                    <h3>💡 Innovation Focus</h3>
+                    <p>We combine theoretical knowledge with practical projects, enabling our community to build real-world applications that matter.</p>
+                </div>
+                <div class="about-graphics">
+                    <i class="fas fa-robot rotating-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Embedded Systems</h3>
+                    <p>Design and develop embedded solutions for IoT, automotive, industrial, and consumer applications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI/ML on Edge</h3>
+                    <p>Deploy machine learning models on resource-constrained embedded devices for intelligent edge computing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>IoT Solutions</h3>
+                    <p>Build complete IoT ecosystems with cloud connectivity, real-time monitoring, and automated control.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Hardware Design</h3>
+                    <p>Professional PCB design, circuit prototyping, and manufacturing support for your projects.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Training Programs</h3>
+                    <p>Comprehensive courses and workshops covering fundamentals to advanced topics in embedded systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Consulting</h3>
+                    <p>Expert consultation for your embedded systems challenges and innovative project implementations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorials" id="tutorials">
+        <div class="container">
+            <h2>📚 Tutorial Blogs & Guides</h2>
+            <div class="tutorials-grid">
+                <a href="tutorials/arduino-basics.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Arduino Basics</h3>
+                    <p>Learn microcontroller fundamentals with Arduino. Perfect for beginners wanting to get started with embedded systems.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 30 min • <i class="fas fa-chart-line"></i> Beginner
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+
+                <a href="tutorials/tensorflow-lite.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>TensorFlow Lite</h3>
+                    <p>Deploy machine learning models on edge devices. Learn optimization techniques for efficient AI inference.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 45 min • <i class="fas fa-chart-line"></i> Intermediate
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+
+                <a href="tutorials/smart-home.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Smart Home Systems</h3>
+                    <p>Build complete IoT solutions with MQTT protocols, sensor integration, and web dashboards.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 60 min • <i class="fas fa-chart-line"></i> Advanced
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+
+                <a href="tutorials/pcb-design.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>PCB Design</h3>
+                    <p>Master hardware design from schematic to manufacturing. Professional PCB layout and best practices.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 90 min • <i class="fas fa-chart-line"></i> Advanced
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+
+                <a href="tutorials/rtos-basics.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>RTOS Basics</h3>
+                    <p>Learn real-time operating systems with FreeRTOS. Master multi-tasking and embedded OS concepts.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 75 min • <i class="fas fa-chart-line"></i> Advanced
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+
+                <a href="tutorials/weather-station.html" class="tutorial-card">
+                    <div class="tutorial-card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Weather Station Project</h3>
+                    <p>Complete end-to-end IoT project. From sensors to cloud integration and web dashboards.</p>
+                    <div class="tutorial-meta">
+                        <i class="fas fa-clock"></i> 120 min • <i class="fas fa-chart-line"></i> Advanced
+                    </div>
+                    <div class="read-more">Read Tutorial →</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Bitronix Lab Headquarters</p>
+                            <p>Technology & Innovation Hub</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@bitronixlab.com" style="color: #00ffff; text-decoration: none;">info@bitronixlab.com</a></p>
+                            <p><a href="mailto:support@bitronixlab.com" style="color: #00ffff; text-decoration: none;">support@bitronixlab.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+1 (XXX) XXX-XXXX</p>
+                            <p>Available 9 AM - 6 PM IST</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Follow Us</h4>
+                            <p>
+                                <a href="#" style="color: #00ffff; margin-right: 15px;"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="#" style="color: #00ffff; margin-right: 15px;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                                <a href="#" style="color: #00ffff;"><i class="fab fa-twitter"></i> Twitter</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                    <input type="email" class="form-input" placeholder="Your Email" required>
+                    <input type="text" class="form-input" placeholder="Subject" required>
+                    <textarea class="form-input" placeholder="Your Message" rows="6" required></textarea>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Bitronix Lab. All rights reserved. | Designing the Future of Embedded Systems & AI</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
