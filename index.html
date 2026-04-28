@@ -27,12 +27,14 @@
       <a href="#mission">Mission</a>
       <a href="#learning">Learning</a>
       <a href="#innovation">Innovation</a>
+      <a href="#founder">Founder</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
+      <canvas class="neon-particle-field" data-particle-field aria-hidden="true"></canvas>
       <div class="hero-media" aria-hidden="true"></div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="circuit-field" aria-hidden="true"></div>
@@ -50,6 +52,7 @@
             <span class="brand-motto">Innovating ideas, empowering future</span>
           </div>
         </div>
+        <p class="founder-kicker">Founded by Stijo Joseph</p>
         <h1 id="hero-title">Bitronix Lab</h1>
         <p class="hero-copy">
           We design product-ready electronics, teach hands-on engineering, and turn intelligent ideas into working prototypes.
@@ -66,7 +69,12 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="lab-device">
+        <div class="hero-lockup-shell" data-magnetic>
+          <img class="brand-lockup" src="Website/assets/bitronix-brand-lockup.svg" alt="">
+          <span class="lockup-glow"></span>
+        </div>
+
+        <div class="lab-device" data-magnetic>
           <div class="device-toolbar">
             <span></span>
             <span></span>
@@ -120,6 +128,7 @@
       </div>
 
       <div class="hero-proof" aria-label="Company focus areas">
+        <span>Founder: Stijo Joseph</span>
         <span>PCB design</span>
         <span>Firmware</span>
         <span>AI at the edge</span>
@@ -345,6 +354,33 @@
           <div class="wall-module active">
             <span></span>
             <strong>Power telemetry</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder-section" id="founder" aria-labelledby="founder-title">
+      <div class="section-inner founder-layout">
+        <div class="founder-card" data-magnetic>
+          <div class="founder-avatar" aria-hidden="true">
+            <span>SJ</span>
+          </div>
+          <div class="founder-signature">
+            <span>Founder</span>
+            <strong>Stijo Joseph</strong>
+          </div>
+        </div>
+
+        <div class="founder-copy">
+          <p class="eyebrow">Founder</p>
+          <h2 id="founder-title">Built by Stijo Joseph for makers who want ideas to become real systems.</h2>
+          <p>
+            Bitronix Lab is shaped around practical engineering: elegant circuits, teachable concepts, working prototypes, and a brand voice that feels futuristic without losing clarity.
+          </p>
+          <div class="founder-stats" aria-label="Founder focus areas">
+            <span>Embedded systems</span>
+            <span>AI learning</span>
+            <span>Prototype culture</span>
           </div>
         </div>
       </div>

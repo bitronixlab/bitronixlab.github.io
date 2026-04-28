@@ -13,6 +13,8 @@ const missionTabs = document.querySelectorAll("[data-mission]");
 const missionLabel = document.querySelector("[data-mission-label]");
 const missionText = document.querySelector("[data-mission-text]");
 const missionDisplay = document.querySelector(".mission-display");
+const particleCanvas = document.querySelector("[data-particle-field]");
+const magneticElements = document.querySelectorAll("[data-magnetic]");
 
 const missionContent = {
   innovate: {
@@ -102,6 +104,111 @@ if (!reducedMotion.matches) {
   }, { passive: true });
 }
 
+const initParticleField = () => {
+  if (!particleCanvas || reducedMotion.matches) {
+    return;
+  }
+
+  const context = particleCanvas.getContext("2d");
+  if (!context) {
+    return;
+  }
+
+  let width = 0;
+  let height = 0;
+  let animationFrame = 0;
+  const pointer = { x: 0, y: 0, active: false };
+  const particles = [];
+
+  const resize = () => {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = particleCanvas.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    particleCanvas.width = Math.max(1, Math.floor(width * ratio));
+    particleCanvas.height = Math.max(1, Math.floor(height * ratio));
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    particles.length = 0;
+    const count = Math.min(86, Math.max(42, Math.floor(width / 18)));
+    for (let index = 0; index < count; index += 1) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.6 + 0.7,
+        hue: Math.random() > 0.5 ? 184 : 212
+      });
+    }
+  };
+
+  const draw = () => {
+    context.clearRect(0, 0, width, height);
+    context.globalCompositeOperation = "lighter";
+
+    particles.forEach((particle, index) => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      if (particle.x < -20) particle.x = width + 20;
+      if (particle.x > width + 20) particle.x = -20;
+      if (particle.y < -20) particle.y = height + 20;
+      if (particle.y > height + 20) particle.y = -20;
+
+      if (pointer.active) {
+        const dx = particle.x - pointer.x;
+        const dy = particle.y - pointer.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 150 && distance > 0) {
+          const force = (150 - distance) / 150;
+          particle.x += (dx / distance) * force * 0.65;
+          particle.y += (dy / distance) * force * 0.65;
+        }
+      }
+
+      for (let next = index + 1; next < particles.length; next += 1) {
+        const other = particles[next];
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 112) {
+          const alpha = (1 - distance / 112) * 0.28;
+          context.strokeStyle = `hsla(${particle.hue}, 100%, 62%, ${alpha})`;
+          context.lineWidth = 1;
+          context.beginPath();
+          context.moveTo(particle.x, particle.y);
+          context.lineTo(other.x, other.y);
+          context.stroke();
+        }
+      }
+
+      context.fillStyle = `hsla(${particle.hue}, 100%, 65%, 0.72)`;
+      context.beginPath();
+      context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      context.fill();
+    });
+
+    animationFrame = window.requestAnimationFrame(draw);
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    const rect = particleCanvas.getBoundingClientRect();
+    pointer.x = event.clientX - rect.left;
+    pointer.y = event.clientY - rect.top;
+    pointer.active = pointer.x >= 0 && pointer.x <= rect.width && pointer.y >= 0 && pointer.y <= rect.height;
+  }, { passive: true });
+
+  window.addEventListener("resize", resize);
+  resize();
+  draw();
+
+  reducedMotion.addEventListener?.("change", () => {
+    window.cancelAnimationFrame(animationFrame);
+    context.clearRect(0, 0, width, height);
+  });
+};
+
 const revealTargets = document.querySelectorAll([
   ".intro-grid",
   ".stat-strip > div",
@@ -109,6 +216,9 @@ const revealTargets = document.querySelectorAll([
   ".mission-content",
   ".mission-console",
   ".mission-values article",
+  ".founder-card",
+  ".founder-copy",
+  ".founder-stats span",
   ".section-heading",
   ".service-card",
   ".track",
@@ -147,6 +257,25 @@ if (revealTargets.length) {
     revealTargets.forEach((element) => revealObserver.observe(element));
   }
 }
+
+if (magneticElements.length && !reducedMotion.matches) {
+  magneticElements.forEach((element) => {
+    element.addEventListener("pointermove", (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 18;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 18;
+      element.style.setProperty("--magnetic-x", `${x.toFixed(2)}px`);
+      element.style.setProperty("--magnetic-y", `${y.toFixed(2)}px`);
+    });
+
+    element.addEventListener("pointerleave", () => {
+      element.style.setProperty("--magnetic-x", "0px");
+      element.style.setProperty("--magnetic-y", "0px");
+    });
+  });
+}
+
+initParticleField();
 
 if (missionTabs.length && missionLabel && missionText) {
   missionTabs.forEach((tab) => {
