@@ -8,17 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="page-progress" data-page-progress></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-logo">
-                <i class="fas fa-microchip"></i> Bitronix Lab
+                <span class="nav-logo-mark">
+                    <img src="../Website/assets/bitronix-logo.svg" alt="" aria-hidden="true">
+                </span>
+                <span>Bitronix Lab</span>
             </a>
             <div class="nav-breadcrumb">
                 <a href="../index.html">Home</a> / <span>Weather Station Project</span>
             </div>
         </div>
     </nav>
+
+    <section class="tutorial-hero">
+        <div class="tutorial-hero-inner">
+            <div>
+                <p class="eyebrow">Bitronix Lab Project Lab</p>
+                <h1>Weather Station Project</h1>
+                <p>Build a complete IoT system with sensors, telemetry, cloud storage, and a live dashboard mindset.</p>
+            </div>
+            <div class="tutorial-mission-card">
+                <img src="../Website/assets/bitronix-logo.svg" alt="Bitronix Lab logo">
+                <span>Innovating ideas, empowering future</span>
+            </div>
+        </div>
+    </section>
 
     <!-- Tutorial Content -->
     <div class="tutorial-container">
@@ -37,8 +56,8 @@
             </div>
             <div class="other-tutorials">
                 <h3>Other Tutorials</h3>
-                <a href="rtos-basics.html">← RTOS Basics</a>
-                <a href="arduino-basics.html">Arduino Basics →</a>
+                <a href="arduino-basics.html">Arduino Basics -></a>
+                <a href="../index.html#innovation">Prototype lab -></a>
             </div>
         </aside>
 
@@ -121,7 +140,7 @@
                         <li><strong>ESP32</strong> (main microcontroller)</li>
                         <li><strong>DHT22</strong> (temperature & humidity)</li>
                         <li><strong>BMP280</strong> (pressure & altitude)</li>
-                        <li><strong>LDR + 10kΩ resistor</strong> (light sensor)</li>
+                        <li><strong>LDR + 10k ohm resistor</strong> (light sensor)</li>
                         <li><strong>0.96" OLED Display</strong> (local display)</li>
                         <li><strong>Solar Panel 5V</strong> (optional, for outdoor use)</li>
                         <li><strong>18650 Battery</strong> (power backup)</li>
@@ -131,10 +150,10 @@
 
                     <h3>Wiring Diagram:</h3>
                     <div class="circuit-diagram">
-                        <p>ESP32 3.3V → DHT22 VCC, BMP280 VCC, LDR circuit</p>
-                        <p>ESP32 GPIO 21 (SDA) → DHT22 Data, BMP280 SDA, OLED SDA</p>
-                        <p>ESP32 GPIO 22 (SCL) → BMP280 SCL, OLED SCL</p>
-                        <p>ESP32 GPIO 34 (ADC0) → LDR + 10k divider</p>
+                        <p>ESP32 3.3V -> DHT22 VCC, BMP280 VCC, LDR circuit</p>
+                        <p>ESP32 GPIO 21 (SDA) -> DHT22 Data, BMP280 SDA, OLED SDA</p>
+                        <p>ESP32 GPIO 22 (SCL) -> BMP280 SCL, OLED SCL</p>
+                        <p>ESP32 GPIO 34 (ADC0) -> LDR + 10k divider</p>
                         <p>All GND pins connected to common ground</p>
                     </div>
 

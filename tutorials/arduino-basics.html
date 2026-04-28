@@ -8,17 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="page-progress" data-page-progress></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-logo">
-                <i class="fas fa-microchip"></i> Bitronix Lab
+                <span class="nav-logo-mark">
+                    <img src="../Website/assets/bitronix-logo.svg" alt="" aria-hidden="true">
+                </span>
+                <span>Bitronix Lab</span>
             </a>
             <div class="nav-breadcrumb">
                 <a href="../index.html">Home</a> / <span>Arduino Basics</span>
             </div>
         </div>
     </nav>
+
+    <section class="tutorial-hero">
+        <div class="tutorial-hero-inner">
+            <div>
+                <p class="eyebrow">Bitronix Lab Learning</p>
+                <h1>Arduino Basics</h1>
+                <p>Start with the fundamentals, understand the circuit, and build confidence with real hardware.</p>
+            </div>
+            <div class="tutorial-mission-card">
+                <img src="../Website/assets/bitronix-logo.svg" alt="Bitronix Lab logo">
+                <span>Innovating ideas, empowering future</span>
+            </div>
+        </div>
+    </section>
 
     <!-- Tutorial Content -->
     <div class="tutorial-container">
@@ -36,8 +55,8 @@
             </div>
             <div class="other-tutorials">
                 <h3>Other Tutorials</h3>
-                <a href="tensorflow-lite.html">TensorFlow Lite →</a>
-                <a href="smart-home.html">Smart Home Systems →</a>
+                <a href="weather-station.html">Weather Station -></a>
+                <a href="../index.html#learning">Training tracks -></a>
             </div>
         </aside>
 
@@ -68,7 +87,7 @@
                         <li><strong>Breadboard</strong> (for circuit prototyping)</li>
                         <li><strong>Jumper Wires</strong> (male and female)</li>
                         <li><strong>LED</strong> (5mm, any color)</li>
-                        <li><strong>Resistor</strong> (220Ω or 1kΩ)</li>
+                        <li><strong>Resistor</strong> (220 ohm or 1k ohm)</li>
                         <li><strong>Push Button</strong> (momentary switch)</li>
                         <li><strong>Power Supply</strong> (optional, for standalone operation)</li>
                     </ul>
@@ -175,10 +194,10 @@ void loop() {
 
                     <h3>Circuit Diagram:</h3>
                     <div class="circuit-diagram">
-                        <p>LED 1 (Red) → Pin 8</p>
-                        <p>LED 2 (Yellow) → Pin 9</p>
-                        <p>LED 3 (Green) → Pin 10</p>
-                        <p>All GND pins → GND</p>
+                        <p>LED 1 (Red) -> Pin 8</p>
+                        <p>LED 2 (Yellow) -> Pin 9</p>
+                        <p>LED 3 (Green) -> Pin 10</p>
+                        <p>All GND pins -> GND</p>
                     </div>
 
                     <h3>Complete Code:</h3>
