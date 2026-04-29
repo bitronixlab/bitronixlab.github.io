@@ -80,8 +80,8 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="hero-chip-stage" data-magnetic data-tilt-3d>
-          <svg class="chip-scene" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <div class="hero-chip-stage hero-chip-stage-xl" data-magnetic data-tilt-3d>
+          <svg class="chip-scene" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <defs>
               <radialGradient id="chipGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%"  stop-color="#00f5ff" stop-opacity="0.85"/>
@@ -89,261 +89,236 @@
                 <stop offset="100%" stop-color="#0088ff" stop-opacity="0"/>
               </radialGradient>
               <radialGradient id="worldGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%"  stop-color="#ffffff"  stop-opacity="0.95"/>
-                <stop offset="35%" stop-color="#ffc857"  stop-opacity="0.55"/>
-                <stop offset="100%" stop-color="#ffc857" stop-opacity="0"/>
+                <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.95"/>
+                <stop offset="40%" stop-color="#43c7ff" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#0088ff" stop-opacity="0"/>
               </radialGradient>
-              <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="rgba(0,245,255,0)"/>
-                <stop offset="50%"  stop-color="rgba(0,245,255,0.85)"/>
-                <stop offset="100%" stop-color="rgba(0,245,255,0)"/>
+              <linearGradient id="zoomGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="rgba(0,245,255,0.95)"/>
+                <stop offset="100%" stop-color="rgba(67,199,255,0.4)"/>
               </linearGradient>
               <filter id="neon" x="-30%" y="-30%" width="160%" height="160%">
                 <feGaussianBlur stdDeviation="3" result="b"/>
                 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
 
-              <!-- Reusable input PCB trace path (sensors -> chip) -->
-              <path id="inTraceA" d="M40 120 L180 120 L220 200 L280 200 L300 260" />
-              <path id="inTraceB" d="M40 300 L160 300 L210 300 L260 300 L300 300" />
-              <path id="inTraceC" d="M40 480 L180 480 L220 400 L280 400 L300 340" />
-              <!-- Output rays (chip -> world) -->
-              <path id="outRayA"  d="M300 300 L520 120" />
-              <path id="outRayB"  d="M300 300 L560 300" />
-              <path id="outRayC"  d="M300 300 L520 480" />
+              <!-- PCB traces from sensors to chip -->
+              <path id="inTraceA" d="M50 110 L200 110 L240 200 L320 200 L360 270" />
+              <path id="inTraceB" d="M50 300 L180 300 L240 300 L320 300 L360 300" />
+              <path id="inTraceC" d="M50 490 L200 490 L240 400 L320 400 L360 330" />
+
+              <!-- Internal bus lines (inside zoom window) -->
+              <path id="busSensorNVIC" d="M460 235 L520 235 L520 270 L560 270" />
+              <path id="busNVICCPU"   d="M620 285 L660 285 L660 320 L640 320" />
+              <path id="busCPUAI"     d="M580 360 L520 360 L520 400 L470 400" />
+              <path id="busAIOut"     d="M450 415 L420 415 L420 470" />
             </defs>
 
-            <!-- Soft chip aura -->
-            <circle class="chip-aura" cx="300" cy="300" r="120" fill="url(#chipGlow)"/>
+            <!-- ====== AMBIENT AURA ====== -->
+            <circle class="chip-aura" cx="400" cy="300" r="160" fill="url(#chipGlow)"/>
 
-            <!-- INPUT PCB TRACES (left side: sensors / signals) -->
+            <!-- ====== EXTERNAL SENSORS (left side) ====== -->
+            <g class="ext-sensors" filter="url(#neon)">
+              <!-- Thermometer sensor -->
+              <g class="sensor sensor-temp" transform="translate(20 90)">
+                <rect x="0" y="0" width="40" height="40" rx="8" fill="#04080d" stroke="#43c7ff" stroke-width="1.5"/>
+                <path d="M20 8 L20 26" stroke="#43c7ff" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="20" cy="30" r="5" fill="#00f5ff"/>
+                <text x="20" y="56" text-anchor="middle" fill="rgba(236,246,255,0.7)" font-size="9" font-family="monospace">TEMP</text>
+              </g>
+              <!-- Camera/vision sensor -->
+              <g class="sensor sensor-vision" transform="translate(20 280)">
+                <rect x="0" y="0" width="40" height="40" rx="8" fill="#04080d" stroke="#43c7ff" stroke-width="1.5"/>
+                <circle cx="20" cy="20" r="10" fill="none" stroke="#43c7ff" stroke-width="1.5"/>
+                <circle cx="20" cy="20" r="4"  fill="#00f5ff"/>
+                <text x="20" y="56" text-anchor="middle" fill="rgba(236,246,255,0.7)" font-size="9" font-family="monospace">VISION</text>
+              </g>
+              <!-- IMU/motion sensor -->
+              <g class="sensor sensor-imu" transform="translate(20 470)">
+                <rect x="0" y="0" width="40" height="40" rx="8" fill="#04080d" stroke="#43c7ff" stroke-width="1.5"/>
+                <path d="M10 20 Q20 8 30 20 T30 32" fill="none" stroke="#43c7ff" stroke-width="1.5"/>
+                <circle cx="20" cy="22" r="3" fill="#00f5ff"/>
+                <text x="20" y="56" text-anchor="middle" fill="rgba(236,246,255,0.7)" font-size="9" font-family="monospace">IMU</text>
+              </g>
+            </g>
+
+            <!-- ====== INPUT TRACES ====== -->
             <g class="trace-layer in-traces" stroke="#1f7a8c" stroke-width="2" fill="none">
               <use href="#inTraceA"/>
               <use href="#inTraceB"/>
               <use href="#inTraceC"/>
-              <!-- Solder pads at chip edge -->
-              <circle cx="300" cy="260" r="3" fill="#43c7ff"/>
-              <circle cx="300" cy="300" r="3" fill="#43c7ff"/>
-              <circle cx="300" cy="340" r="3" fill="#43c7ff"/>
-              <!-- Sensor nodes at left edge -->
-              <g class="sensor-node">
-                <circle cx="40" cy="120" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
-                <circle cx="40" cy="120" r="3"  fill="#43c7ff"/>
-              </g>
-              <g class="sensor-node">
-                <circle cx="40" cy="300" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
-                <circle cx="40" cy="300" r="3"  fill="#43c7ff"/>
-              </g>
-              <g class="sensor-node">
-                <circle cx="40" cy="480" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
-                <circle cx="40" cy="480" r="3"  fill="#43c7ff"/>
-              </g>
+              <circle cx="360" cy="270" r="3" fill="#43c7ff"/>
+              <circle cx="360" cy="300" r="3" fill="#43c7ff"/>
+              <circle cx="360" cy="330" r="3" fill="#43c7ff"/>
             </g>
 
-            <!-- DATA SIGNALS streaming INTO the chip -->
+            <!-- ====== INPUT SIGNAL PACKETS ====== -->
             <g class="signals signals-in" filter="url(#neon)">
               <circle r="5" fill="#00f5ff">
-                <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#inTraceA"/>
-                </animateMotion>
+                <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto"><mpath href="#inTraceA"/></animateMotion>
                 <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.4s" repeatCount="indefinite"/>
               </circle>
-              <circle r="5" fill="#43c7ff">
-                <animateMotion dur="2s" begin="0.4s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#inTraceB"/>
-                </animateMotion>
+              <circle r="5" fill="#ffffff">
+                <animateMotion dur="2s" begin="0.4s" repeatCount="indefinite" rotate="auto"><mpath href="#inTraceB"/></animateMotion>
                 <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2s" begin="0.4s" repeatCount="indefinite"/>
               </circle>
-              <circle r="5" fill="#00f5ff">
-                <animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#inTraceC"/>
-                </animateMotion>
+              <circle r="5" fill="#43c7ff">
+                <animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" rotate="auto"><mpath href="#inTraceC"/></animateMotion>
                 <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
               </circle>
             </g>
 
-            <!-- THE CHIP (square package with the brand logo as silicon die) -->
+            <!-- ====== THE CHIP PACKAGE ====== -->
             <g class="chip-package">
-              <!-- pins on all four sides -->
               <g class="chip-pins" fill="#43c7ff">
-                <!-- left pins -->
-                <rect x="222" y="270" width="18" height="6" rx="1"/>
-                <rect x="222" y="296" width="18" height="6" rx="1"/>
-                <rect x="222" y="322" width="18" height="6" rx="1"/>
-                <!-- right pins -->
-                <rect x="360" y="270" width="18" height="6" rx="1"/>
-                <rect x="360" y="296" width="18" height="6" rx="1"/>
-                <rect x="360" y="322" width="18" height="6" rx="1"/>
-                <!-- top pins -->
-                <rect x="270" y="222" width="6" height="18" rx="1"/>
-                <rect x="296" y="222" width="6" height="18" rx="1"/>
-                <rect x="322" y="222" width="6" height="18" rx="1"/>
-                <!-- bottom pins -->
-                <rect x="270" y="360" width="6" height="18" rx="1"/>
-                <rect x="296" y="360" width="6" height="18" rx="1"/>
-                <rect x="322" y="360" width="6" height="18" rx="1"/>
+                <rect x="282" y="270" width="18" height="6" rx="1"/>
+                <rect x="282" y="296" width="18" height="6" rx="1"/>
+                <rect x="282" y="322" width="18" height="6" rx="1"/>
+                <rect x="500" y="270" width="18" height="6" rx="1"/>
+                <rect x="500" y="296" width="18" height="6" rx="1"/>
+                <rect x="500" y="322" width="18" height="6" rx="1"/>
+                <rect x="350" y="222" width="6" height="18" rx="1"/>
+                <rect x="376" y="222" width="6" height="18" rx="1"/>
+                <rect x="402" y="222" width="6" height="18" rx="1"/>
+                <rect x="428" y="222" width="6" height="18" rx="1"/>
+                <rect x="350" y="360" width="6" height="18" rx="1"/>
+                <rect x="376" y="360" width="6" height="18" rx="1"/>
+                <rect x="402" y="360" width="6" height="18" rx="1"/>
+                <rect x="428" y="360" width="6" height="18" rx="1"/>
               </g>
-              <!-- chip body -->
-              <rect class="chip-body" x="240" y="240" width="120" height="120" rx="14"
+              <rect class="chip-body" x="300" y="240" width="200" height="120" rx="14"
                     fill="#040b14" stroke="#00f5ff" stroke-width="2"/>
-              <!-- inner edge highlight -->
-              <rect x="248" y="248" width="104" height="104" rx="10"
+              <rect x="308" y="248" width="184" height="104" rx="10"
                     fill="none" stroke="rgba(0,245,255,0.35)" stroke-width="1"/>
-              <!-- silicon die = brand logo -->
+              <!-- silicon die — brand logo, BIG -->
               <image class="chip-die" href="Website/assets/brand_logo.png"
-                     x="252" y="252" width="96" height="96"/>
-              <!-- Edge-AI processing pulse around chip -->
-              <rect class="chip-process" x="232" y="232" width="136" height="136" rx="18"
+                     x="312" y="252" width="176" height="96" preserveAspectRatio="xMidYMid meet"/>
+              <rect class="chip-process" x="292" y="232" width="216" height="136" rx="18"
                     fill="none" stroke="#00f5ff" stroke-width="2"/>
             </g>
 
-            <!-- EDGE-AI NEURAL OVERLAY (appears while chip "thinks") -->
-            <g class="ai-net" stroke="rgba(255,200,87,0.75)" stroke-width="1" fill="#ffc857" filter="url(#neon)">
-              <!-- input column -->
-              <circle cx="262" cy="270" r="2"/>
-              <circle cx="262" cy="300" r="2"/>
-              <circle cx="262" cy="330" r="2"/>
-              <!-- hidden column -->
-              <circle cx="300" cy="262" r="2"/>
-              <circle cx="300" cy="300" r="3"/>
-              <circle cx="300" cy="338" r="2"/>
-              <!-- output column -->
-              <circle cx="338" cy="270" r="2"/>
-              <circle cx="338" cy="300" r="2"/>
-              <circle cx="338" cy="330" r="2"/>
-              <!-- connections -->
-              <g stroke-opacity="0.55">
-                <line x1="262" y1="270" x2="300" y2="262"/>
-                <line x1="262" y1="270" x2="300" y2="300"/>
-                <line x1="262" y1="300" x2="300" y2="262"/>
-                <line x1="262" y1="300" x2="300" y2="300"/>
-                <line x1="262" y1="300" x2="300" y2="338"/>
-                <line x1="262" y1="330" x2="300" y2="300"/>
-                <line x1="262" y1="330" x2="300" y2="338"/>
-                <line x1="300" y1="262" x2="338" y2="270"/>
-                <line x1="300" y1="262" x2="338" y2="300"/>
-                <line x1="300" y1="300" x2="338" y2="270"/>
-                <line x1="300" y1="300" x2="338" y2="300"/>
-                <line x1="300" y1="300" x2="338" y2="330"/>
-                <line x1="300" y1="338" x2="338" y2="300"/>
-                <line x1="300" y1="338" x2="338" y2="330"/>
+            <!-- ====== ZOOM-IN WINDOW (right side, magnified internals) ====== -->
+            <g class="chip-zoom" filter="url(#neon)">
+              <!-- Magnifier lens lines from chip to zoom window -->
+              <line class="zoom-link" x1="498" y1="252" x2="430" y2="200" stroke="rgba(0,245,255,0.45)" stroke-dasharray="3 3"/>
+              <line class="zoom-link" x1="498" y1="348" x2="430" y2="500" stroke="rgba(0,245,255,0.45)" stroke-dasharray="3 3"/>
+
+              <!-- Zoom panel background -->
+              <rect class="zoom-panel" x="430" y="180" width="340" height="320" rx="14"
+                    fill="rgba(4,10,18,0.78)" stroke="rgba(0,245,255,0.45)" stroke-width="1.5"/>
+              <text x="445" y="200" fill="rgba(0,245,255,0.85)" font-size="10" font-family="monospace" letter-spacing="2">ZOOM · DIE INTERNALS</text>
+
+              <!-- Internal blocks -->
+              <!-- SENSOR I/O block -->
+              <g class="zblock zblock-io">
+                <rect x="445" y="215" width="80" height="40" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
+                <text x="485" y="240" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">GPIO/ADC</text>
+              </g>
+
+              <!-- NVIC block -->
+              <g class="zblock zblock-nvic">
+                <rect x="560" y="250" width="100" height="42" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
+                <text x="610" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">NVIC</text>
+                <text x="610" y="285" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">interrupt ctrl</text>
+              </g>
+
+              <!-- CPU CORE block -->
+              <g class="zblock zblock-cpu">
+                <rect x="540" y="305" width="100" height="55" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
+                <text x="590" y="328" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">CORTEX-M</text>
+                <text x="590" y="343" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">CPU CORE</text>
+                <!-- mini register bars -->
+                <g class="cpu-regs">
+                  <rect x="548" y="350" width="14" height="3" fill="#00f5ff"/>
+                  <rect x="566" y="350" width="14" height="3" fill="#43c7ff"/>
+                  <rect x="584" y="350" width="14" height="3" fill="#ffffff"/>
+                  <rect x="602" y="350" width="14" height="3" fill="#43c7ff"/>
+                  <rect x="620" y="350" width="14" height="3" fill="#00f5ff"/>
+                </g>
+              </g>
+
+              <!-- AI ENGINE block -->
+              <g class="zblock zblock-ai">
+                <rect x="445" y="375" width="120" height="55" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
+                <text x="505" y="395" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">AI ENGINE</text>
+                <text x="505" y="408" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">edge inference</text>
+                <!-- tiny neural net inside -->
+                <g class="ai-mini" stroke="rgba(0,245,255,0.7)" fill="#ffffff">
+                  <circle cx="455" cy="420" r="1.6"/><circle cx="475" cy="416" r="1.6"/>
+                  <circle cx="495" cy="420" r="1.6"/><circle cx="515" cy="416" r="1.6"/>
+                  <circle cx="535" cy="420" r="1.6"/><circle cx="555" cy="416" r="1.6"/>
+                  <line x1="455" y1="420" x2="475" y2="416" stroke-width="0.5"/>
+                  <line x1="475" y1="416" x2="495" y2="420" stroke-width="0.5"/>
+                  <line x1="495" y1="420" x2="515" y2="416" stroke-width="0.5"/>
+                  <line x1="515" y1="416" x2="535" y2="420" stroke-width="0.5"/>
+                  <line x1="535" y1="420" x2="555" y2="416" stroke-width="0.5"/>
+                </g>
+              </g>
+
+              <!-- OUT GPIO block -->
+              <g class="zblock zblock-out">
+                <rect x="380" y="455" width="90" height="35" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
+                <text x="425" y="477" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">OUT · PWM</text>
+              </g>
+
+              <!-- Internal bus traces -->
+              <g class="zoom-bus" stroke="#1f7a8c" stroke-width="1.5" fill="none">
+                <use href="#busSensorNVIC"/>
+                <use href="#busNVICCPU"/>
+                <use href="#busCPUAI"/>
+                <use href="#busAIOut"/>
+              </g>
+              <!-- Bus labels -->
+              <text x="535" y="232" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">IRQ</text>
+              <text x="650" y="305" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">EXEC</text>
+              <text x="525" y="385" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">INFER</text>
+
+              <!-- Animated packets traveling through internals -->
+              <g class="zoom-packets" filter="url(#neon)">
+                <circle r="3" fill="#00f5ff">
+                  <animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#busSensorNVIC"/></animateMotion>
+                </circle>
+                <circle r="3" fill="#ffffff">
+                  <animateMotion dur="3.6s" begin="0.9s" repeatCount="indefinite"><mpath href="#busNVICCPU"/></animateMotion>
+                </circle>
+                <circle r="3" fill="#43c7ff">
+                  <animateMotion dur="3.6s" begin="1.8s" repeatCount="indefinite"><mpath href="#busCPUAI"/></animateMotion>
+                </circle>
+                <circle r="3" fill="#00f5ff">
+                  <animateMotion dur="3.6s" begin="2.7s" repeatCount="indefinite"><mpath href="#busAIOut"/></animateMotion>
+                </circle>
               </g>
             </g>
 
-            <!-- OUTPUT RAYS (chip -> outside world) -->
-            <g class="trace-layer out-rays" stroke="rgba(255,200,87,0.45)" stroke-width="2" fill="none">
-              <use href="#outRayA"/>
-              <use href="#outRayB"/>
-              <use href="#outRayC"/>
+            <!-- ====== BIG ENERGY OUTPUT — expanding ring waves ====== -->
+            <g class="energy-output" filter="url(#neon)">
+              <circle class="energy-ring r1" cx="400" cy="300" r="80"  fill="none" stroke="#00f5ff" stroke-width="2"/>
+              <circle class="energy-ring r2" cx="400" cy="300" r="80"  fill="none" stroke="#43c7ff" stroke-width="2"/>
+              <circle class="energy-ring r3" cx="400" cy="300" r="80"  fill="none" stroke="#ffffff" stroke-width="2"/>
             </g>
 
-            <!-- Light packets traveling outward -->
-            <g class="signals signals-out" filter="url(#neon)">
-              <circle r="6" fill="#ffc857">
-                <animateMotion dur="2.2s" begin="0.6s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#outRayA"/>
-                </animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.2s" begin="0.6s" repeatCount="indefinite"/>
-              </circle>
-              <circle r="6" fill="#ffe88a">
-                <animateMotion dur="2s" begin="1s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#outRayB"/>
-                </animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2s" begin="1s" repeatCount="indefinite"/>
-              </circle>
-              <circle r="6" fill="#ff6655">
-                <animateMotion dur="2.4s" begin="1.4s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#outRayC"/>
-                </animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.4s" begin="1.4s" repeatCount="indefinite"/>
-              </circle>
+            <!-- ====== WORLD being illuminated (top-right small) ====== -->
+            <g class="world-group" filter="url(#neon)" transform="translate(0 -10)">
+              <circle class="world-halo" cx="700" cy="120" r="60" fill="url(#worldGlow)"/>
+              <circle cx="700" cy="120" r="32" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
+              <ellipse cx="700" cy="120" rx="32" ry="12" fill="none" stroke="rgba(67,199,255,0.6)" stroke-width="1"/>
+              <ellipse cx="700" cy="120" rx="12" ry="32" fill="none" stroke="rgba(67,199,255,0.6)" stroke-width="1"/>
+              <line x1="668" y1="120" x2="732" y2="120" stroke="rgba(67,199,255,0.5)"/>
+              <path d="M684 108 q6 -4 12 0 t10 4 q-2 6 -10 6 t-12 -10z" fill="rgba(0,245,255,0.55)"/>
+              <path d="M686 132 q8 3 16 0 q-2 6 -8 9 q-6 -2 -8 -9z" fill="rgba(0,245,255,0.45)"/>
             </g>
 
-            <!-- THE WORLD (right side) being illuminated / changed -->
-            <g class="world-group" filter="url(#neon)">
-              <!-- world halo that pulses when light hits -->
-              <circle class="world-halo" cx="540" cy="300" r="80" fill="url(#worldGlow)"/>
-              <!-- globe -->
-              <circle cx="540" cy="300" r="46" fill="#04080d" stroke="#ffc857" stroke-width="2"/>
-              <!-- meridians -->
-              <ellipse cx="540" cy="300" rx="46" ry="18" fill="none" stroke="rgba(255,200,87,0.5)" stroke-width="1"/>
-              <ellipse cx="540" cy="300" rx="18" ry="46" fill="none" stroke="rgba(255,200,87,0.5)" stroke-width="1"/>
-              <line x1="494" y1="300" x2="586" y2="300" stroke="rgba(255,200,87,0.4)"/>
-              <!-- continents (abstract) -->
-              <path d="M518 282 q8 -6 18 0 t14 6 q-4 8 -14 8 t-18 -14z"
-                    fill="rgba(255,200,87,0.55)"/>
-              <path d="M520 318 q10 4 22 0 q-2 8 -12 12 q-8 -2 -10 -12z"
-                    fill="rgba(255,200,87,0.45)"/>
-              <!-- light bulb above world -->
-              <g class="world-bulb">
-                <circle cx="540" cy="210" r="14" fill="#ffe88a" opacity="0.9"/>
-                <rect x="534" y="222" width="12" height="6" rx="1" fill="#ffc857"/>
-              </g>
-            </g>
-
-            <!-- Floor reflection grid -->
+            <!-- Floor shimmer -->
             <g class="floor-grid" stroke="rgba(0,245,255,0.18)" stroke-width="1">
-              <line x1="80"  y1="560" x2="520" y2="560"/>
-              <line x1="120" y1="580" x2="480" y2="580"/>
-              <line x1="160" y1="595" x2="440" y2="595"/>
+              <line x1="120" y1="560" x2="680" y2="560"/>
+              <line x1="160" y1="580" x2="640" y2="580"/>
+              <line x1="200" y1="595" x2="600" y2="595"/>
             </g>
           </svg>
 
           <span class="chip-label" aria-hidden="true">
-            <em>SENSE</em><i></i><em>PROCESS · EDGE&nbsp;AI</em><i></i><em>ACT</em>
+            <em>SENSE</em><i></i><em>NVIC</em><i></i><em>CORTEX-M</em><i></i><em>AI</em><i></i><em>ACT</em>
           </span>
-        </div>
-
-        <div class="lab-device" data-magnetic>
-          <div class="device-toolbar">
-            <span></span>
-            <span></span>
-            <span></span>
-            <strong>EDGE-AI NODE</strong>
-          </div>
-
-          <div class="device-screen">
-            <div class="chip-board">
-              <span class="trace trace-a"></span>
-              <span class="trace trace-b"></span>
-              <span class="trace trace-c"></span>
-              <span class="trace trace-d"></span>
-              <span class="pin pin-a"></span>
-              <span class="pin pin-b"></span>
-              <span class="pin pin-c"></span>
-              <span class="pin pin-d"></span>
-              <div class="core-chip core-chip-logo">
-                <img src="Website/assets/brand_logo.png" alt="" aria-hidden="true">
-              </div>
-            </div>
-
-            <div class="signal-panel">
-              <div class="signal-header">
-                <span>Telemetry</span>
-                <strong data-live-value>38.2k</strong>
-              </div>
-              <svg class="signal-wave" viewBox="0 0 360 120" aria-hidden="true" focusable="false">
-                <path d="M0 68 C28 30 54 28 82 66 S138 103 166 61 223 25 250 62 306 102 360 44"></path>
-                <path d="M0 88 C38 73 58 74 92 91 S156 111 188 76 242 35 274 64 324 91 360 72"></path>
-              </svg>
-              <div class="data-bars">
-                <span style="--bar: 72%"></span>
-                <span style="--bar: 48%"></span>
-                <span style="--bar: 86%"></span>
-                <span style="--bar: 63%"></span>
-                <span style="--bar: 78%"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="floating-readout readout-a">
-          <span>Firmware loop</span>
-          <strong data-loop-value>1.8ms</strong>
-        </div>
-        <div class="floating-readout readout-b">
-          <span>Sensor sync</span>
-          <strong data-sync-value>99.4%</strong>
         </div>
       </div>
 
@@ -827,22 +802,38 @@
         </div>
 
         <div class="yt-layout">
+          <!--
+            STM32 PLAYLIST
+            To embed a real playlist directly:
+              1. Find your STM32 playlist URL (must be PUBLIC, not Unlisted/Private).
+              2. Copy the value after "list=" (a string starting with PL...).
+              3. Paste it into data-playlist-id below — the facade will auto-upgrade
+                 to a live player when clicked. Until then, the click opens the
+                 channel's playlists page so the preview never breaks.
+          -->
           <div class="yt-player-wrap" data-tilt-3d>
-            <!--
-              STM32 PLAYLIST EMBED
-              Replace PLAYLIST_ID_HERE with the actual YouTube playlist ID
-              (the part after "list=" in the playlist URL). Until then this
-              loads the channel's STM32 search results as a fallback.
-            -->
-            <iframe
-              class="yt-player"
-              src="https://www.youtube.com/embed?listType=playlist&amp;list=PLAYLIST_ID_HERE"
-              title="Bitronix Lab — STM32 playlist"
-              loading="lazy"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
+            <button
+              type="button"
+              class="yt-facade"
+              data-yt-facade
+              data-playlist-id=""
+              data-channel-url="https://www.youtube.com/@BITRONIXLAB/playlists"
+              aria-label="Play Bitronix Lab STM32 playlist on YouTube">
+              <div class="yt-facade-poster" aria-hidden="true">
+                <div class="yt-facade-grid"></div>
+                <div class="yt-facade-content">
+                  <span class="yt-facade-eyebrow">Bitronix Lab · Playlist</span>
+                  <strong class="yt-facade-title">STM32 from Zero to RTOS</strong>
+                  <span class="yt-facade-meta">Bare-metal · HAL · NVIC · DMA · FreeRTOS</span>
+                </div>
+                <div class="yt-facade-play">
+                  <svg viewBox="0 0 68 48" aria-hidden="true">
+                    <path class="yt-play-bg" d="M66.52 7.74a8 8 0 0 0-5.65-5.66C56.45 1 34 1 34 1S11.55 1 7.13 2.08A8 8 0 0 0 1.48 7.74C.4 12.16.4 24 .4 24s0 11.84 1.08 16.26a8 8 0 0 0 5.65 5.66C11.55 47 34 47 34 47s22.45 0 26.87-1.08a8 8 0 0 0 5.65-5.66C67.6 35.84 67.6 24 67.6 24s0-11.84-1.08-16.26z"/>
+                    <path class="yt-play-arrow" d="M27 34V14l18 10-18 10z"/>
+                  </svg>
+                </div>
+              </div>
+            </button>
             <span class="yt-player-glow" aria-hidden="true"></span>
           </div>
 
@@ -978,5 +969,31 @@
 
   <script src="Website/script.js"></script>
   <script src="js/portfolio.js"></script>
+
+  <!-- Flying CubeSat (drifts across the page periodically / on long idle) -->
+  <div class="flying-object" data-flying-object aria-hidden="true">
+    <span class="trail"></span>
+    <svg viewBox="0 0 96 60" xmlns="http://www.w3.org/2000/svg">
+      <!-- left solar panel -->
+      <rect x="0"  y="22" width="28" height="16" rx="1" fill="#04101a" stroke="#43c7ff" stroke-width="1"/>
+      <line x1="7"  y1="22" x2="7"  y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <line x1="14" y1="22" x2="14" y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <line x1="21" y1="22" x2="21" y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <!-- right solar panel -->
+      <rect x="68" y="22" width="28" height="16" rx="1" fill="#04101a" stroke="#43c7ff" stroke-width="1"/>
+      <line x1="75" y1="22" x2="75" y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <line x1="82" y1="22" x2="82" y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <line x1="89" y1="22" x2="89" y2="38" stroke="rgba(67,199,255,0.6)" stroke-width="0.5"/>
+      <!-- CubeSat body -->
+      <rect x="32" y="14" width="32" height="32" rx="3" fill="#061421" stroke="#00f5ff" stroke-width="1.5"/>
+      <rect x="36" y="18" width="24" height="24" rx="2" fill="none" stroke="rgba(0,245,255,0.4)" stroke-width="0.8"/>
+      <circle cx="48" cy="30" r="4" fill="#00f5ff">
+        <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <!-- antenna -->
+      <line x1="48" y1="14" x2="48" y2="4"  stroke="#43c7ff" stroke-width="1"/>
+      <circle cx="48" cy="3" r="1.5" fill="#ffffff"/>
+    </svg>
+  </div>
 </body>
 </html>

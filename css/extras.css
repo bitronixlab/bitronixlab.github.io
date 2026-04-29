@@ -1645,3 +1645,306 @@ body > footer { position: relative; z-index: 1; }
   .floor-grid line, .chip-label i,
   .signals circle { animation: none !important; }
 }
+
+
+/* ==========================================================================
+   HERO LAYOUT FILL — make the chip dominant, close the gap
+   ========================================================================== */
+/* Override the old hero-visual reservation so chip can grow */
+.hero-visual {
+  width: min(820px, 100%) !important;
+  min-height: auto !important;
+  align-self: center;
+}
+
+.hero-chip-stage-xl {
+  width: min(820px, 100%);
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+  filter: drop-shadow(0 40px 80px rgba(0, 245, 255, 0.45));
+}
+
+/* Hide leftover lab-device pieces the user no longer wants */
+.lab-device,
+.floating-readout,
+.signal-panel { display: none !important; }
+
+/* ==========================================================================
+   NEW CHIP-SCENE INTERNALS — zoom window, NVIC/CPU/AI, energy rings
+   ========================================================================== */
+
+/* External sensors — gentle blink */
+.ext-sensors .sensor circle:last-of-type,
+.ext-sensors .sensor circle:nth-of-type(2) {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: extSensorBlink 1.6s ease-in-out infinite;
+}
+.ext-sensors .sensor-vision { animation-delay: 0.3s; }
+.ext-sensors .sensor-imu    { animation-delay: 0.6s; }
+@keyframes extSensorBlink {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.25); }
+}
+
+/* Zoom-panel slow drift to feel "alive" */
+.zoom-panel {
+  transform-origin: 600px 340px;
+  animation: zoomBreath 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(0, 245, 255, 0.3));
+}
+@keyframes zoomBreath {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.2)); }
+  50%      { filter: drop-shadow(0 0 24px rgba(0, 245, 255, 0.55)); }
+}
+
+/* Magnifier link lines flicker */
+.zoom-link {
+  stroke-dashoffset: 0;
+  animation: linkFlow 2.4s linear infinite;
+}
+@keyframes linkFlow {
+  to { stroke-dashoffset: -40; }
+}
+
+/* zblocks light up in sequence (sense -> NVIC -> CPU -> AI -> OUT) */
+.zblock rect {
+  transition: stroke 200ms ease;
+  animation: zblockPulse 4.8s ease-in-out infinite;
+}
+.zblock-io   rect { animation-delay: 0s;    }
+.zblock-nvic rect { animation-delay: 0.6s;  }
+.zblock-cpu  rect { animation-delay: 1.2s;  }
+.zblock-ai   rect { animation-delay: 1.8s;  }
+.zblock-out  rect { animation-delay: 2.4s;  }
+@keyframes zblockPulse {
+  0%, 90%, 100% { stroke: rgba(67,199,255,0.55); filter: drop-shadow(0 0 0 transparent); }
+  10%, 25%      { stroke: #00f5ff; filter: drop-shadow(0 0 8px rgba(0,245,255,0.95)); }
+}
+
+/* CPU register bars run like a tiny terminal */
+.cpu-regs rect {
+  animation: regRun 1s steps(6) infinite;
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.cpu-regs rect:nth-child(2) { animation-delay: 0.1s; }
+.cpu-regs rect:nth-child(3) { animation-delay: 0.2s; }
+.cpu-regs rect:nth-child(4) { animation-delay: 0.3s; }
+.cpu-regs rect:nth-child(5) { animation-delay: 0.4s; }
+@keyframes regRun {
+  0%, 100% { transform: scaleX(0.3); opacity: 0.5; }
+  50%      { transform: scaleX(1);   opacity: 1; }
+}
+
+/* AI mini-net neurons fire */
+.ai-mini circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aiMiniFire 1.6s ease-in-out infinite;
+}
+.ai-mini circle:nth-child(2) { animation-delay: 0.15s; }
+.ai-mini circle:nth-child(3) { animation-delay: 0.30s; }
+.ai-mini circle:nth-child(4) { animation-delay: 0.45s; }
+.ai-mini circle:nth-child(5) { animation-delay: 0.60s; }
+.ai-mini circle:nth-child(6) { animation-delay: 0.75s; }
+@keyframes aiMiniFire {
+  0%, 100% { transform: scale(1);   filter: drop-shadow(0 0 0 transparent); }
+  50%      { transform: scale(1.8); filter: drop-shadow(0 0 4px #ffffff); }
+}
+
+/* Big energy output — expanding rings repeat */
+.energy-ring {
+  transform-origin: 400px 300px;
+  transform-box: view-box;
+  opacity: 0;
+  animation: energyExpand 2.8s ease-out infinite;
+}
+.energy-ring.r1 { animation-delay: 0s;   }
+.energy-ring.r2 { animation-delay: 0.9s; }
+.energy-ring.r3 { animation-delay: 1.8s; }
+@keyframes energyExpand {
+  0%   { transform: scale(0.4); opacity: 0; stroke-width: 4; }
+  10%  { opacity: 0.95; }
+  100% { transform: scale(3.5); opacity: 0; stroke-width: 0.5; }
+}
+
+/* World pulses softly */
+.world-halo {
+  transform-origin: 700px 120px;
+  transform-box: view-box;
+  animation: worldGlowBlue 2.6s ease-in-out infinite;
+}
+@keyframes worldGlowBlue {
+  0%, 100% { opacity: 0.45; transform: scale(0.92); }
+  50%      { opacity: 1;    transform: scale(1.12); }
+}
+
+@media (max-width: 980px) {
+  .hero-chip-stage-xl { width: min(680px, 100%); aspect-ratio: 4 / 3.2; }
+}
+@media (max-width: 720px) {
+  .hero-chip-stage-xl { width: 100%; aspect-ratio: 4 / 3.4; }
+}
+
+/* ==========================================================================
+   YOUTUBE FACADE — never shows "preview not available"
+   ========================================================================== */
+.yt-facade {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: #04080d;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.yt-facade-poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(0, 245, 255, 0.28), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(67, 199, 255, 0.22), transparent 55%),
+    linear-gradient(140deg, #061421 0%, #03060c 65%);
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 320ms ease;
+}
+
+.yt-facade-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg,  rgba(67, 199, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(67, 199, 255, 0.18) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+  opacity: 0.7;
+  pointer-events: none;
+  animation: ytFacadeGrid 12s linear infinite;
+}
+@keyframes ytFacadeGrid {
+  to { background-position: 48px 48px; }
+}
+
+.yt-facade-content {
+  position: relative;
+  z-index: 2;
+  padding: 32px 28px 16px;
+  display: grid;
+  gap: 8px;
+  max-width: 78%;
+}
+.yt-facade-eyebrow {
+  font-size: 0.74rem;
+  font-weight: 880;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 245, 255, 0.85);
+}
+.yt-facade-title {
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  font-weight: 950;
+  line-height: 1.12;
+  color: #ffffff;
+  text-shadow: 0 0 28px rgba(0, 245, 255, 0.45);
+  letter-spacing: -0.01em;
+}
+.yt-facade-meta {
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: rgba(236, 246, 255, 0.7);
+}
+
+.yt-facade-play {
+  position: relative;
+  z-index: 2;
+  margin-top: 14px;
+  width: 92px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  transition: transform 220ms ease;
+}
+.yt-facade-play svg { width: 100%; height: 100%; display: block; }
+.yt-play-bg    { fill: #ff0033; transition: fill 200ms ease; opacity: 0.92; filter: drop-shadow(0 0 18px rgba(255,0,51,0.6)); }
+.yt-play-arrow { fill: #ffffff; }
+
+.yt-facade:hover .yt-facade-poster,
+.yt-facade:focus-visible .yt-facade-poster {
+  filter: brightness(1.08);
+}
+.yt-facade:hover .yt-facade-play { transform: scale(1.08); }
+.yt-facade:hover .yt-play-bg     { fill: #ff1f4a; }
+
+/* The iframe that JS injects after click */
+.yt-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
+  background: #000;
+}
+
+@media (max-width: 720px) {
+  .yt-facade-content { padding: 22px 18px 8px; max-width: 90%; }
+  .yt-facade-play { width: 70px; height: 50px; margin-top: 8px; }
+}
+
+/* ==========================================================================
+   FLYING OBJECT — CubeSat satellite drifts across the page periodically
+   (also triggers on long idle).
+   ========================================================================== */
+.flying-object {
+  position: fixed;
+  top: 22vh;
+  left: -180px;
+  z-index: 65;
+  width: 96px;
+  height: 60px;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 8px 20px rgba(0, 245, 255, 0.6));
+}
+.flying-object.is-flying {
+  animation: flyAcross 8s cubic-bezier(0.4, 0.05, 0.6, 0.95) forwards;
+}
+@keyframes flyAcross {
+  0%   { transform: translateX(0)              translateY(0)    rotate(-4deg); opacity: 0; }
+  6%   { opacity: 1; }
+  35%  { transform: translateX(45vw)           translateY(-30px) rotate(2deg); }
+  70%  { transform: translateX(80vw)           translateY(20px)  rotate(-3deg); }
+  94%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 240px)) translateY(0) rotate(0deg); opacity: 0; }
+}
+.flying-object .trail {
+  position: absolute;
+  top: 50%;
+  right: 92%;
+  width: 200px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.7), rgba(0, 245, 255, 0));
+  filter: blur(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .energy-ring,
+  .ext-sensors .sensor circle,
+  .zoom-panel,
+  .zoom-link,
+  .zblock rect,
+  .cpu-regs rect,
+  .ai-mini circle,
+  .world-halo,
+  .yt-facade-grid,
+  .flying-object { animation: none !important; }
+}

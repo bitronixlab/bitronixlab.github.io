@@ -256,4 +256,78 @@
   } else {
     steps.forEach((s) => s.classList.add("is-visible"));
   }
+
+  /* ---------- YouTube facade — upgrade to live player on click ---------- */
+  const facade = document.querySelector("[data-yt-facade]");
+  if (facade) {
+    facade.addEventListener("click", () => {
+      const playlistId = (facade.dataset.playlistId || "").trim();
+      const channelUrl = facade.dataset.channelUrl || "https://www.youtube.com/@BITRONIXLAB";
+
+      if (playlistId) {
+        // Real playlist available — swap facade for live iframe
+        const wrap = facade.parentElement;
+        const iframe = document.createElement("iframe");
+        iframe.className = "yt-player";
+        iframe.src =
+          "https://www.youtube-nocookie.com/embed/videoseries?list=" +
+          encodeURIComponent(playlistId) +
+          "&autoplay=1&rel=0";
+        iframe.title = "Bitronix Lab — STM32 playlist";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        facade.replaceWith(iframe);
+        wrap.classList.add("yt-live");
+      } else {
+        // No playlist ID set yet — open the channel so user always reaches video content
+        window.open(channelUrl, "_blank", "noopener");
+      }
+    });
+  }
+
+  /* ---------- Flying CubeSat — drifts across the page periodically ---------- */
+  const flyer = document.querySelector("[data-flying-object]");
+  if (flyer && !reduced) {
+    const FIRST_DELAY  = 25 * 1000;       // 25 s after page load (so user notices it)
+    const REPEAT_EVERY = 10 * 60 * 1000;  // every 10 minutes
+    const IDLE_AFTER   = 60 * 1000;       // also fly if user is idle 1 min
+
+    let lastActivity = Date.now();
+    const bumpActivity = () => { lastActivity = Date.now(); };
+    ["pointermove", "pointerdown", "keydown", "scroll", "wheel", "touchstart"].forEach((evt) => {
+      window.addEventListener(evt, bumpActivity, { passive: true });
+    });
+
+    let isFlying = false;
+    const launch = () => {
+      if (isFlying) return;
+      isFlying = true;
+      // randomize altitude slightly
+      flyer.style.top = (15 + Math.random() * 25) + "vh";
+      flyer.classList.remove("is-flying");
+      // force reflow so animation restarts
+      void flyer.offsetWidth;
+      flyer.classList.add("is-flying");
+    };
+    flyer.addEventListener("animationend", () => {
+      flyer.classList.remove("is-flying");
+      isFlying = false;
+    });
+
+    // First flyby
+    setTimeout(launch, FIRST_DELAY);
+
+    // Repeating flyby every 10 minutes
+    setInterval(launch, REPEAT_EVERY);
+
+    // Bonus: if user has been idle for more than IDLE_AFTER, fly soon
+    setInterval(() => {
+      if (Date.now() - lastActivity > IDLE_AFTER && !isFlying) {
+        launch();
+        lastActivity = Date.now(); // avoid back-to-back idle launches
+      }
+    }, 30 * 1000);
+  }
 })();
