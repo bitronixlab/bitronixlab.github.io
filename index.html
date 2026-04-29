@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Bitronix Lab designs embedded systems, teaches practical electronics and AI, and prototypes intelligent products.">
   <title>Bitronix Lab | Embedded Systems and AI</title>
+  <link rel="icon" type="image/png" href="Website/assets/brand_logo.png">
+  <link rel="apple-touch-icon" href="Website/assets/brand_logo.png">
   <link rel="stylesheet" href="Website/styles.css">
+  <link rel="stylesheet" href="css/extras.css">
 </head>
 <body>
+  <canvas class="pcb-bg" data-pcb-bg aria-hidden="true"></canvas>
   <header class="site-header" data-header>
     <a class="brand" href="#top" aria-label="Bitronix Lab home">
-      <span class="brand-mark brand-mark-logo">
-        <img src="Website/assets/bitronix-logo.svg" alt="" aria-hidden="true">
+      <span class="brand-mark brand-mark-logo brand-mark-photo">
+        <img src="Website/assets/brand_logo.png" alt="" aria-hidden="true">
       </span>
       <span>Bitronix Lab</span>
     </a>
@@ -23,10 +27,13 @@
     </button>
 
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#journey">Journey</a>
       <a href="#services">Services</a>
-      <a href="#mission">Mission</a>
-      <a href="#learning">Learning</a>
-      <a href="#innovation">Innovation</a>
+      <a href="#topics">Topics</a>
+      <a href="#learning">Tutorials</a>
+      <a href="#blog">Blog</a>
+      <a href="#watch">Watch</a>
       <a href="#founder">Founder</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -46,14 +53,18 @@
 
       <div class="hero-content">
         <div class="hero-brand-card">
-          <img class="hero-logo" src="Website/assets/bitronix-logo.svg" alt="Bitronix Lab logo">
+          <img class="hero-logo hero-logo-photo" src="Website/assets/brand_logo.png" alt="Bitronix Lab logo">
           <div>
-            <p class="eyebrow">Embedded systems + applied AI</p>
+            <p class="eyebrow">Embedded systems + applied &amp; edge AI</p>
             <span class="brand-motto">Innovating ideas, empowering future</span>
           </div>
         </div>
         <p class="founder-kicker">Founded by Stijo Joseph</p>
-        <h1 id="hero-title">Bitronix Lab</h1>
+        <h1 id="hero-title"><span class="gradient-text">Bitronix Lab</span></h1>
+        <p class="hero-typewriter" aria-live="polite">
+          We build <span class="type-target" data-typewriter
+            data-words='["intelligent embedded systems.","edge AI prototypes.","RTOS-driven firmware.","custom PCBs &amp; sensors.","hands-on training labs."]'>intelligent embedded systems.</span><span class="type-caret" aria-hidden="true"></span>
+        </p>
         <p class="hero-copy">
           We design product-ready electronics, teach hands-on engineering, and turn intelligent ideas into working prototypes.
         </p>
@@ -69,9 +80,218 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="hero-lockup-shell" data-magnetic>
-          <img class="brand-lockup" src="Website/assets/bitronix-brand-lockup.svg" alt="">
-          <span class="lockup-glow"></span>
+        <div class="hero-chip-stage" data-magnetic data-tilt-3d>
+          <svg class="chip-scene" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="chipGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#00f5ff" stop-opacity="0.85"/>
+                <stop offset="60%" stop-color="#0088ff" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#0088ff" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="worldGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#ffffff"  stop-opacity="0.95"/>
+                <stop offset="35%" stop-color="#ffc857"  stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#ffc857" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="rgba(0,245,255,0)"/>
+                <stop offset="50%"  stop-color="rgba(0,245,255,0.85)"/>
+                <stop offset="100%" stop-color="rgba(0,245,255,0)"/>
+              </linearGradient>
+              <filter id="neon" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+
+              <!-- Reusable input PCB trace path (sensors -> chip) -->
+              <path id="inTraceA" d="M40 120 L180 120 L220 200 L280 200 L300 260" />
+              <path id="inTraceB" d="M40 300 L160 300 L210 300 L260 300 L300 300" />
+              <path id="inTraceC" d="M40 480 L180 480 L220 400 L280 400 L300 340" />
+              <!-- Output rays (chip -> world) -->
+              <path id="outRayA"  d="M300 300 L520 120" />
+              <path id="outRayB"  d="M300 300 L560 300" />
+              <path id="outRayC"  d="M300 300 L520 480" />
+            </defs>
+
+            <!-- Soft chip aura -->
+            <circle class="chip-aura" cx="300" cy="300" r="120" fill="url(#chipGlow)"/>
+
+            <!-- INPUT PCB TRACES (left side: sensors / signals) -->
+            <g class="trace-layer in-traces" stroke="#1f7a8c" stroke-width="2" fill="none">
+              <use href="#inTraceA"/>
+              <use href="#inTraceB"/>
+              <use href="#inTraceC"/>
+              <!-- Solder pads at chip edge -->
+              <circle cx="300" cy="260" r="3" fill="#43c7ff"/>
+              <circle cx="300" cy="300" r="3" fill="#43c7ff"/>
+              <circle cx="300" cy="340" r="3" fill="#43c7ff"/>
+              <!-- Sensor nodes at left edge -->
+              <g class="sensor-node">
+                <circle cx="40" cy="120" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
+                <circle cx="40" cy="120" r="3"  fill="#43c7ff"/>
+              </g>
+              <g class="sensor-node">
+                <circle cx="40" cy="300" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
+                <circle cx="40" cy="300" r="3"  fill="#43c7ff"/>
+              </g>
+              <g class="sensor-node">
+                <circle cx="40" cy="480" r="10" fill="#04080d" stroke="#43c7ff" stroke-width="2"/>
+                <circle cx="40" cy="480" r="3"  fill="#43c7ff"/>
+              </g>
+            </g>
+
+            <!-- DATA SIGNALS streaming INTO the chip -->
+            <g class="signals signals-in" filter="url(#neon)">
+              <circle r="5" fill="#00f5ff">
+                <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#inTraceA"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.4s" repeatCount="indefinite"/>
+              </circle>
+              <circle r="5" fill="#43c7ff">
+                <animateMotion dur="2s" begin="0.4s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#inTraceB"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+              </circle>
+              <circle r="5" fill="#00f5ff">
+                <animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#inTraceC"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- THE CHIP (square package with the brand logo as silicon die) -->
+            <g class="chip-package">
+              <!-- pins on all four sides -->
+              <g class="chip-pins" fill="#43c7ff">
+                <!-- left pins -->
+                <rect x="222" y="270" width="18" height="6" rx="1"/>
+                <rect x="222" y="296" width="18" height="6" rx="1"/>
+                <rect x="222" y="322" width="18" height="6" rx="1"/>
+                <!-- right pins -->
+                <rect x="360" y="270" width="18" height="6" rx="1"/>
+                <rect x="360" y="296" width="18" height="6" rx="1"/>
+                <rect x="360" y="322" width="18" height="6" rx="1"/>
+                <!-- top pins -->
+                <rect x="270" y="222" width="6" height="18" rx="1"/>
+                <rect x="296" y="222" width="6" height="18" rx="1"/>
+                <rect x="322" y="222" width="6" height="18" rx="1"/>
+                <!-- bottom pins -->
+                <rect x="270" y="360" width="6" height="18" rx="1"/>
+                <rect x="296" y="360" width="6" height="18" rx="1"/>
+                <rect x="322" y="360" width="6" height="18" rx="1"/>
+              </g>
+              <!-- chip body -->
+              <rect class="chip-body" x="240" y="240" width="120" height="120" rx="14"
+                    fill="#040b14" stroke="#00f5ff" stroke-width="2"/>
+              <!-- inner edge highlight -->
+              <rect x="248" y="248" width="104" height="104" rx="10"
+                    fill="none" stroke="rgba(0,245,255,0.35)" stroke-width="1"/>
+              <!-- silicon die = brand logo -->
+              <image class="chip-die" href="Website/assets/brand_logo.png"
+                     x="252" y="252" width="96" height="96"/>
+              <!-- Edge-AI processing pulse around chip -->
+              <rect class="chip-process" x="232" y="232" width="136" height="136" rx="18"
+                    fill="none" stroke="#00f5ff" stroke-width="2"/>
+            </g>
+
+            <!-- EDGE-AI NEURAL OVERLAY (appears while chip "thinks") -->
+            <g class="ai-net" stroke="rgba(255,200,87,0.75)" stroke-width="1" fill="#ffc857" filter="url(#neon)">
+              <!-- input column -->
+              <circle cx="262" cy="270" r="2"/>
+              <circle cx="262" cy="300" r="2"/>
+              <circle cx="262" cy="330" r="2"/>
+              <!-- hidden column -->
+              <circle cx="300" cy="262" r="2"/>
+              <circle cx="300" cy="300" r="3"/>
+              <circle cx="300" cy="338" r="2"/>
+              <!-- output column -->
+              <circle cx="338" cy="270" r="2"/>
+              <circle cx="338" cy="300" r="2"/>
+              <circle cx="338" cy="330" r="2"/>
+              <!-- connections -->
+              <g stroke-opacity="0.55">
+                <line x1="262" y1="270" x2="300" y2="262"/>
+                <line x1="262" y1="270" x2="300" y2="300"/>
+                <line x1="262" y1="300" x2="300" y2="262"/>
+                <line x1="262" y1="300" x2="300" y2="300"/>
+                <line x1="262" y1="300" x2="300" y2="338"/>
+                <line x1="262" y1="330" x2="300" y2="300"/>
+                <line x1="262" y1="330" x2="300" y2="338"/>
+                <line x1="300" y1="262" x2="338" y2="270"/>
+                <line x1="300" y1="262" x2="338" y2="300"/>
+                <line x1="300" y1="300" x2="338" y2="270"/>
+                <line x1="300" y1="300" x2="338" y2="300"/>
+                <line x1="300" y1="300" x2="338" y2="330"/>
+                <line x1="300" y1="338" x2="338" y2="300"/>
+                <line x1="300" y1="338" x2="338" y2="330"/>
+              </g>
+            </g>
+
+            <!-- OUTPUT RAYS (chip -> outside world) -->
+            <g class="trace-layer out-rays" stroke="rgba(255,200,87,0.45)" stroke-width="2" fill="none">
+              <use href="#outRayA"/>
+              <use href="#outRayB"/>
+              <use href="#outRayC"/>
+            </g>
+
+            <!-- Light packets traveling outward -->
+            <g class="signals signals-out" filter="url(#neon)">
+              <circle r="6" fill="#ffc857">
+                <animateMotion dur="2.2s" begin="0.6s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#outRayA"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.2s" begin="0.6s" repeatCount="indefinite"/>
+              </circle>
+              <circle r="6" fill="#ffe88a">
+                <animateMotion dur="2s" begin="1s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#outRayB"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2s" begin="1s" repeatCount="indefinite"/>
+              </circle>
+              <circle r="6" fill="#ff6655">
+                <animateMotion dur="2.4s" begin="1.4s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#outRayC"/>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.4s" begin="1.4s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- THE WORLD (right side) being illuminated / changed -->
+            <g class="world-group" filter="url(#neon)">
+              <!-- world halo that pulses when light hits -->
+              <circle class="world-halo" cx="540" cy="300" r="80" fill="url(#worldGlow)"/>
+              <!-- globe -->
+              <circle cx="540" cy="300" r="46" fill="#04080d" stroke="#ffc857" stroke-width="2"/>
+              <!-- meridians -->
+              <ellipse cx="540" cy="300" rx="46" ry="18" fill="none" stroke="rgba(255,200,87,0.5)" stroke-width="1"/>
+              <ellipse cx="540" cy="300" rx="18" ry="46" fill="none" stroke="rgba(255,200,87,0.5)" stroke-width="1"/>
+              <line x1="494" y1="300" x2="586" y2="300" stroke="rgba(255,200,87,0.4)"/>
+              <!-- continents (abstract) -->
+              <path d="M518 282 q8 -6 18 0 t14 6 q-4 8 -14 8 t-18 -14z"
+                    fill="rgba(255,200,87,0.55)"/>
+              <path d="M520 318 q10 4 22 0 q-2 8 -12 12 q-8 -2 -10 -12z"
+                    fill="rgba(255,200,87,0.45)"/>
+              <!-- light bulb above world -->
+              <g class="world-bulb">
+                <circle cx="540" cy="210" r="14" fill="#ffe88a" opacity="0.9"/>
+                <rect x="534" y="222" width="12" height="6" rx="1" fill="#ffc857"/>
+              </g>
+            </g>
+
+            <!-- Floor reflection grid -->
+            <g class="floor-grid" stroke="rgba(0,245,255,0.18)" stroke-width="1">
+              <line x1="80"  y1="560" x2="520" y2="560"/>
+              <line x1="120" y1="580" x2="480" y2="580"/>
+              <line x1="160" y1="595" x2="440" y2="595"/>
+            </g>
+          </svg>
+
+          <span class="chip-label" aria-hidden="true">
+            <em>SENSE</em><i></i><em>PROCESS · EDGE&nbsp;AI</em><i></i><em>ACT</em>
+          </span>
         </div>
 
         <div class="lab-device" data-magnetic>
@@ -92,8 +312,8 @@
               <span class="pin pin-b"></span>
               <span class="pin pin-c"></span>
               <span class="pin pin-d"></span>
-              <div class="core-chip">
-                <span>BX</span>
+              <div class="core-chip core-chip-logo">
+                <img src="Website/assets/brand_logo.png" alt="" aria-hidden="true">
               </div>
             </div>
 
@@ -157,6 +377,140 @@
       </div>
     </section>
 
+    <section class="journey-section" id="journey" aria-labelledby="journey-title">
+      <div class="journey-aurora" aria-hidden="true"></div>
+      <div class="journey-grid-bg" aria-hidden="true"></div>
+
+      <div class="section-inner journey-inner">
+        <div class="section-heading journey-heading">
+          <p class="eyebrow">The Bitronix Journey</p>
+          <h2 id="journey-title">From a <span class="gradient-text">spark of an idea</span> to the world that learns from it.</h2>
+          <p>Every product we touch travels the same four chapters — a portfolio of how an idea becomes silicon, software, and a skill the world can use.</p>
+        </div>
+
+        <ol class="journey-track" data-journey>
+          <li class="journey-step" data-step="01" data-journey-step>
+            <div class="journey-card">
+              <div class="journey-stage">
+                <span class="journey-num">01</span>
+                <span class="journey-tag">Innovate</span>
+              </div>
+              <h3>Brainstorming product ideas</h3>
+              <p>We start in the open — sketches, whiteboards, edge-AI hypotheses, sensor experiments. Bold concepts get pressure-tested against physics, cost, and the human who will eventually use them.</p>
+              <ul class="journey-meta">
+                <li>Concept sprints</li><li>Feasibility studies</li><li>Edge-AI hypotheses</li>
+              </ul>
+              <div class="journey-visual visual-innovate" aria-hidden="true">
+                <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+                <span class="bulb"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="journey-step" data-step="02" data-journey-step>
+            <div class="journey-card">
+              <div class="journey-stage">
+                <span class="journey-num">02</span>
+                <span class="journey-tag">Design</span>
+              </div>
+              <h3>Designing the product</h3>
+              <p>Schematics, PCB layouts, enclosures, firmware architecture, and brand voice — every layer drawn with production in mind. Beautiful where it matters, brutal where it must be.</p>
+              <ul class="journey-meta">
+                <li>Schematic capture</li><li>PCB &amp; mechanical</li><li>System architecture</li>
+              </ul>
+              <div class="journey-visual visual-design" aria-hidden="true">
+                <svg viewBox="0 0 200 120"><path d="M10 60 H60 L80 40 H140 L160 80 H190" /><circle cx="60" cy="60" r="4"/><circle cx="140" cy="40" r="4"/><circle cx="160" cy="80" r="4"/><rect x="82" y="30" width="56" height="22" rx="2"/></svg>
+              </div>
+            </div>
+          </li>
+
+          <li class="journey-step" data-step="03" data-journey-step>
+            <div class="journey-card">
+              <div class="journey-stage">
+                <span class="journey-num">03</span>
+                <span class="journey-tag">Develop</span>
+              </div>
+              <h3>Developing &amp; bringing it to life</h3>
+              <p>Bare-metal drivers, RTOS tasks, sensor fusion, on-device inference and field-update pipelines. We build until the prototype hums on the bench — then we make it boring and reliable.</p>
+              <ul class="journey-meta">
+                <li>Embedded C / RTOS</li><li>Edge AI pipelines</li><li>Bench validation</li>
+              </ul>
+              <div class="journey-visual visual-develop" aria-hidden="true">
+                <div class="code-strip"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="pulse-dot"></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="journey-step" data-step="04" data-journey-step>
+            <div class="journey-card">
+              <div class="journey-stage">
+                <span class="journey-num">04</span>
+                <span class="journey-tag">Educate</span>
+              </div>
+              <h3>Educating the world</h3>
+              <p>Every project becomes a lesson. Tutorials, workshops, open hardware notes and AI training tracks — so the next generation of builders can take what we learned and go further.</p>
+              <ul class="journey-meta">
+                <li>Workshops &amp; labs</li><li>Open tutorials</li><li>AI training tracks</li>
+              </ul>
+              <div class="journey-visual visual-educate" aria-hidden="true">
+                <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span><span class="node n4"></span>
+                <span class="link l1"></span><span class="link l2"></span><span class="link l3"></span>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="about-section reveal-up" id="about" aria-labelledby="about-title">
+      <div class="section-inner about-layout">
+        <div class="about-copy">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">What is <span class="gradient-text">Bitronix Lab</span>?</h2>
+          <p class="about-lead">
+            Bitronix Lab is an embedded systems, applied AI and edge AI studio. We design intelligent electronics, write the firmware that brings them to life, and teach engineers how to build the same things themselves.
+          </p>
+          <p>
+            Whether you are shipping a connected product, prototyping a sensor mesh, or learning the fundamentals of microcontrollers, RTOS and Embedded C — we turn ideas into working hardware that you can hold, measure, and improve.
+          </p>
+          <div class="about-actions">
+            <a class="button button-primary" href="#topics">Explore Topics</a>
+            <a class="button button-secondary" href="#services">What we do</a>
+          </div>
+        </div>
+        <div class="about-orb" aria-hidden="true">
+          <div class="orb-ring"></div>
+          <div class="orb-ring"></div>
+          <div class="orb-ring"></div>
+          <div class="orb-core">BX</div>
+          <span class="orb-blip blip-a"></span>
+          <span class="orb-blip blip-b"></span>
+          <span class="orb-blip blip-c"></span>
+        </div>
+      </div>
+      <div class="marquee-strip" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Microcontrollers</span><span>·</span>
+          <span>Embedded C</span><span>·</span>
+          <span>RTOS</span><span>·</span>
+          <span>IoT</span><span>·</span>
+          <span>Edge AI</span><span>·</span>
+          <span>PCB Design</span><span>·</span>
+          <span>Sensors</span><span>·</span>
+          <span>Robotics</span><span>·</span>
+          <span>Microcontrollers</span><span>·</span>
+          <span>Embedded C</span><span>·</span>
+          <span>RTOS</span><span>·</span>
+          <span>IoT</span><span>·</span>
+          <span>Edge AI</span><span>·</span>
+          <span>PCB Design</span><span>·</span>
+          <span>Sensors</span><span>·</span>
+          <span>Robotics</span><span>·</span>
+        </div>
+      </div>
+    </section>
+
     <section class="mission-section" id="mission" aria-labelledby="mission-title">
       <div class="mission-orbit" aria-hidden="true">
         <span></span>
@@ -164,8 +518,8 @@
         <span></span>
       </div>
       <div class="section-inner mission-layout">
-        <div class="mission-logo-panel">
-          <img src="Website/assets/bitronix-logo.svg" alt="Bitronix Lab neon circuit logo">
+        <div class="mission-logo-panel mission-logo-photo">
+          <img src="Website/assets/brand_logo_mission.png" alt="Bitronix Lab mission emblem">
           <div class="mission-line"></div>
           <p>Innovate. Design. Develop. Educate.</p>
         </div>
@@ -359,6 +713,164 @@
       </div>
     </section>
 
+    <section class="topics-section reveal-up" id="topics" aria-labelledby="topics-title">
+      <div class="topics-bg" aria-hidden="true"></div>
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Explore</p>
+          <h2 id="topics-title">Topics we <span class="gradient-text">teach &amp; build</span></h2>
+          <p>Deep-dive sub-pages on every layer of an embedded product — from the silicon up to the cloud and the AI that lives at the edge.</p>
+        </div>
+
+        <div class="topics-grid">
+          <a class="topic-card" href="tutorials/microcontrollers.html" data-glitch="Microcontrollers">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><rect x="14" y="14" width="36" height="36" rx="4"/><path d="M8 22h6M8 30h6M8 38h6M8 46h6M50 22h6M50 30h6M50 38h6M50 46h6M22 8v6M30 8v6M38 8v6M46 8v6M22 50v6M30 50v6M38 50v6M46 50v6"/></svg>
+            </div>
+            <h3>Microcontrollers</h3>
+            <p>AVR, STM32, ESP32, RP2040 — architectures, peripherals, GPIO, ADC, PWM, timers, interrupts.</p>
+            <span class="topic-cta">Open topic <em>→</em></span>
+          </a>
+
+          <a class="topic-card" href="tutorials/embedded-c.html" data-glitch="Embedded C">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><path d="M14 12h28l8 8v32H14z"/><path d="M42 12v8h8"/><path d="M22 32h20M22 40h14"/></svg>
+            </div>
+            <h3>Embedded C</h3>
+            <p>Pointers, memory maps, volatile, bit manipulation, register access, drivers and bare-metal patterns.</p>
+            <span class="topic-cta">Open topic <em>→</em></span>
+          </a>
+
+          <a class="topic-card" href="tutorials/embedded-rtos.html" data-glitch="Embedded RTOS">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><path d="M32 14v8M32 42v8M14 32h8M42 32h8M20 20l5 5M44 44l-5-5M20 44l5-5M44 20l-5 5"/></svg>
+            </div>
+            <h3>Embedded RTOS</h3>
+            <p>FreeRTOS &amp; Zephyr — tasks, scheduling, semaphores, queues, mutexes, ISRs and real-time design.</p>
+            <span class="topic-cta">Open topic <em>→</em></span>
+          </a>
+
+          <a class="topic-card" href="tutorials/arduino-basics.html" data-glitch="Arduino">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><rect x="6" y="20" width="52" height="24" rx="12"/><circle cx="20" cy="32" r="5"/><circle cx="44" cy="32" r="5"/><path d="M16 32h8M40 32h8M44 28v8"/></svg>
+            </div>
+            <h3>Arduino Basics</h3>
+            <p>The friendliest entry to embedded — hardware setup, sketches, sensors and your first project.</p>
+            <span class="topic-cta">Open topic <em>→</em></span>
+          </a>
+
+          <a class="topic-card" href="tutorials/weather-station.html" data-glitch="IoT Project">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><path d="M20 40a10 10 0 1 1 4-19 12 12 0 0 1 22 5 8 8 0 0 1-2 16z"/><path d="M22 50l-3 6M32 50l-3 6M42 50l-3 6"/></svg>
+            </div>
+            <h3>IoT Weather Station</h3>
+            <p>End-to-end project — sensors, Wi-Fi, MQTT, dashboards and reliable telemetry from device to cloud.</p>
+            <span class="topic-cta">Open topic <em>→</em></span>
+          </a>
+
+          <a class="topic-card" href="#contact" data-glitch="Edge AI">
+            <div class="topic-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="6"/><circle cx="12" cy="14" r="4"/><circle cx="52" cy="14" r="4"/><circle cx="12" cy="50" r="4"/><circle cx="52" cy="50" r="4"/><path d="M16 16l12 14M48 16l-12 14M16 48l12-12M48 48l-12-12"/></svg>
+            </div>
+            <h3>Edge AI</h3>
+            <p>TinyML, vision pipelines, model quantization &amp; on-device inference for constrained hardware.</p>
+            <span class="topic-cta">Coming soon <em>→</em></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section reveal-up" id="blog" aria-labelledby="blog-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Read</p>
+          <h2 id="blog-title">From the <span class="gradient-text">Bitronix blog</span></h2>
+          <p>Field notes, tutorials and deep dives — written for engineers who like to actually build things.</p>
+        </div>
+
+        <div class="blog-grid">
+          <a class="blog-card" href="tutorials/embedded-rtos.html">
+            <span class="blog-tag">RTOS</span>
+            <h3>Why your firmware needs an RTOS (and when it doesn't)</h3>
+            <p>A practical look at when bare-metal stops scaling and FreeRTOS starts to pay for itself.</p>
+            <span class="blog-meta">8 min read · April 2026</span>
+          </a>
+          <a class="blog-card" href="tutorials/embedded-c.html">
+            <span class="blog-tag">Embedded C</span>
+            <h3>10 Embedded C patterns every firmware engineer should know</h3>
+            <p>Volatile, bitfields, ring buffers, state machines and more — with real microcontroller examples.</p>
+            <span class="blog-meta">12 min read · April 2026</span>
+          </a>
+          <a class="blog-card" href="tutorials/microcontrollers.html">
+            <span class="blog-tag">MCU</span>
+            <h3>Choosing your first microcontroller in 2026</h3>
+            <p>STM32 vs ESP32 vs RP2040 vs AVR — a no-nonsense comparison for your next project.</p>
+            <span class="blog-meta">9 min read · March 2026</span>
+          </a>
+          <a class="blog-card" href="tutorials/blog.html">
+            <span class="blog-tag">All posts</span>
+            <h3>Browse every Bitronix Lab article →</h3>
+            <p>Tutorials, project breakdowns, engineering essays and the occasional rant.</p>
+            <span class="blog-meta">Updated weekly</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="yt-section" id="watch" aria-labelledby="yt-title">
+      <div class="yt-grid-bg" aria-hidden="true"></div>
+      <div class="section-inner yt-inner">
+        <div class="section-heading yt-heading">
+          <p class="eyebrow">Watch &amp; Learn</p>
+          <h2 id="yt-title">STM32 deep dives on <span class="gradient-text">YouTube</span></h2>
+          <p>Hands-on tutorials, register-level walkthroughs and project builds from the Bitronix Lab channel — streaming straight from <a class="yt-handle" href="https://www.youtube.com/@BITRONIXLAB" target="_blank" rel="noopener">@BITRONIXLAB</a>.</p>
+        </div>
+
+        <div class="yt-layout">
+          <div class="yt-player-wrap" data-tilt-3d>
+            <!--
+              STM32 PLAYLIST EMBED
+              Replace PLAYLIST_ID_HERE with the actual YouTube playlist ID
+              (the part after "list=" in the playlist URL). Until then this
+              loads the channel's STM32 search results as a fallback.
+            -->
+            <iframe
+              class="yt-player"
+              src="https://www.youtube.com/embed?listType=playlist&amp;list=PLAYLIST_ID_HERE"
+              title="Bitronix Lab — STM32 playlist"
+              loading="lazy"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+            <span class="yt-player-glow" aria-hidden="true"></span>
+          </div>
+
+          <aside class="yt-side">
+            <a class="yt-channel-card" href="https://www.youtube.com/@BITRONIXLAB" target="_blank" rel="noopener">
+              <div class="yt-channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              </div>
+              <div>
+                <span>Subscribe on YouTube</span>
+                <strong>@BITRONIXLAB</strong>
+              </div>
+            </a>
+
+            <ul class="yt-topics" aria-label="STM32 topics covered">
+              <li><span>01</span><strong>STM32 Bare-Metal Bring-up</strong><em>Clocks, GPIO, registers</em></li>
+              <li><span>02</span><strong>HAL vs LL vs Registers</strong><em>When to use which</em></li>
+              <li><span>03</span><strong>Timers, PWM &amp; Interrupts</strong><em>Hands-on labs</em></li>
+              <li><span>04</span><strong>UART, I2C, SPI &amp; DMA</strong><em>Real peripherals</em></li>
+              <li><span>05</span><strong>FreeRTOS on STM32</strong><em>Tasks, queues, ISRs</em></li>
+            </ul>
+
+            <a class="button button-primary yt-cta" href="https://www.youtube.com/@BITRONIXLAB/playlists" target="_blank" rel="noopener">Open all playlists →</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section class="founder-section" id="founder" aria-labelledby="founder-title">
       <div class="section-inner founder-layout">
         <div class="founder-card" data-magnetic>
@@ -436,12 +948,35 @@
   </main>
 
   <footer class="site-footer">
-    <div class="section-inner footer-grid">
-      <p>Bitronix Lab</p>
-      <p>Design. Teach. Innovate.</p>
+    <div class="section-inner footer-grid footer-grid-rich">
+      <div class="footer-brand">
+        <img src="Website/assets/brand_logo.png" alt="Bitronix Lab" class="footer-logo">
+        <div>
+          <p class="footer-name">Bitronix Lab</p>
+          <p class="footer-tag">Design. Teach. Innovate.</p>
+        </div>
+      </div>
+
+      <nav class="footer-social" aria-label="Bitronix Lab on the web">
+        <a class="social-chip social-yt" href="https://www.youtube.com/@BITRONIXLAB" target="_blank" rel="noopener" aria-label="Bitronix Lab on YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          <span>YouTube</span>
+        </a>
+        <a class="social-chip social-li" href="https://www.linkedin.com/in/stijo-joseph-8678051ab" target="_blank" rel="noopener" aria-label="Stijo Joseph on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.48v6.26zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a class="social-chip social-mail" href="mailto:hello@bitronixlab.com" aria-label="Email Bitronix Lab">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 9.2L2.4 6h19.2L12 13.2zM2 8.4V18h20V8.4l-10 7.2L2 8.4z"/></svg>
+          <span>Email</span>
+        </a>
+      </nav>
+
+      <p class="footer-fine">&copy; 2026 Bitronix Lab · Founded by <a href="https://www.linkedin.com/in/stijo-joseph-8678051ab" target="_blank" rel="noopener">Stijo Joseph</a></p>
     </div>
   </footer>
 
   <script src="Website/script.js"></script>
+  <script src="js/portfolio.js"></script>
 </body>
 </html>

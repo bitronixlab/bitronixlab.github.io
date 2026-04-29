@@ -340,3 +340,79 @@ if (contactForm && formStatus) {
     contactForm.reset();
   });
 }
+
+
+/* === Bitronix Lab — extra animations === */
+
+/* Typewriter for hero subtitle */
+(() => {
+  const target = document.querySelector("[data-typewriter]");
+  if (!target) return;
+  let words;
+  try { words = JSON.parse(target.dataset.words || "[]"); }
+  catch { words = []; }
+  if (!words.length || reducedMotion.matches) return;
+
+  let wordIndex = 0;
+  let charIndex = words[0].length;
+  let deleting = false;
+
+  const tick = () => {
+    const word = words[wordIndex];
+    if (!deleting) {
+      charIndex += 1;
+      target.textContent = word.slice(0, charIndex);
+      if (charIndex >= word.length) {
+        deleting = true;
+        return setTimeout(tick, 1600);
+      }
+      return setTimeout(tick, 70 + Math.random() * 40);
+    }
+    charIndex -= 1;
+    target.textContent = word.slice(0, charIndex);
+    if (charIndex <= 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      return setTimeout(tick, 220);
+    }
+    setTimeout(tick, 32);
+  };
+  setTimeout(tick, 900);
+})();
+
+/* Reveal on scroll for new sections */
+(() => {
+  const items = document.querySelectorAll(".reveal-up");
+  if (!items.length) return;
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  items.forEach((el) => io.observe(el));
+})();
+
+/* Topic card pointer spotlight */
+(() => {
+  const cards = document.querySelectorAll(".topic-card");
+  if (!cards.length || reducedMotion.matches) return;
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty("--mx", `${x}%`);
+      card.style.setProperty("--my", `${y}%`);
+    });
+  });
+})();
+
+
+/* === Bitronix Lab � extra animations === */
