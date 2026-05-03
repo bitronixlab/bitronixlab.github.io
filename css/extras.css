@@ -1948,3 +1948,391 @@ body > footer { position: relative; z-index: 1; }
   .yt-facade-grid,
   .flying-object { animation: none !important; }
 }
+
+
+/* ==========================================================================
+   BRAND TYPOGRAPHY — Orbitron-based wordmark to match the logo vibe
+   ========================================================================== */
+.brand-wordmark,
+.brand-xl > span:last-child {
+  font-family: "Orbitron", "Audiowide", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  background: linear-gradient(180deg, #ffffff 0%, #d6f3ff 35%, #43c7ff 60%, #0a7da6 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.4px rgba(0, 245, 255, 0.45);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 8px rgba(0,245,255,0.4));
+}
+
+/* Bigger header brand logo */
+.brand-mark-xl {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.5),
+    0 0 28px rgba(0, 245, 255, 0.45),
+    inset 0 0 18px rgba(0, 245, 255, 0.28) !important;
+}
+.brand-mark-xl img {
+  padding: 6px !important;
+  filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.7)) !important;
+  animation: brandPulse 4s ease-in-out infinite;
+}
+@keyframes brandPulse {
+  0%, 100% { transform: scale(1)   rotate(0deg); }
+  50%      { transform: scale(1.06) rotate(1.5deg); }
+}
+
+/* Massive hero brand logo */
+.hero-logo-xl {
+  width: 168px !important;
+  height: 168px !important;
+  border-radius: 26px !important;
+  padding: 10px !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.55),
+    0 26px 70px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(0, 245, 255, 0.45),
+    inset 0 0 28px rgba(0, 245, 255, 0.3) !important;
+  filter: drop-shadow(0 0 14px rgba(0, 245, 255, 0.7)) !important;
+}
+.hero-brand-card-xl { gap: 22px; }
+
+/* ==========================================================================
+   METALLIC HERO TITLE — Orbitron font, brushed-chrome gradient + sweep
+   ========================================================================== */
+.hero-title-metal {
+  font-family: "Orbitron", "Audiowide", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+  line-height: 1.02;
+  margin: 0.1em 0 0.35em;
+  perspective: 900px;
+}
+.metal-text {
+  position: relative;
+  display: inline-block;
+  background:
+    linear-gradient(180deg,
+      #ffffff 0%,
+      #e9f7ff 18%,
+      #9ad9ff 38%,
+      #2da3d1 52%,
+      #0e5e7e 62%,
+      #43c7ff 78%,
+      #ffffff 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 245, 255, 0.35);
+  filter:
+    drop-shadow(0 2px 0 rgba(0,0,0,0.55))
+    drop-shadow(0 0 18px rgba(0, 245, 255, 0.55))
+    drop-shadow(0 0 38px rgba(67, 199, 255, 0.35));
+  transform-style: preserve-3d;
+  animation: metalTilt 8s ease-in-out infinite;
+}
+.metal-text::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+    transparent 30%,
+    rgba(255,255,255,0.85) 48%,
+    transparent 66%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background-size: 250% 100%;
+  background-position: -150% 0;
+  animation: metalSheen 4.5s linear infinite;
+}
+.metal-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(0, 245, 255, 0.22);
+  filter: blur(0.5px);
+  pointer-events: none;
+  z-index: -1;
+  transform: translate(2px, 3px);
+}
+@keyframes metalSheen {
+  0%   { background-position: -150% 0; }
+  60%  { background-position:  150% 0; }
+  100% { background-position:  150% 0; }
+}
+@keyframes metalTilt {
+  0%, 100% { transform: rotateX(0deg)  rotateY(0deg); }
+  25%      { transform: rotateX(2deg)  rotateY(-3deg); }
+  50%      { transform: rotateX(0deg)  rotateY(0deg); }
+  75%      { transform: rotateX(-2deg) rotateY(3deg); }
+}
+
+/* ==========================================================================
+   3D ANIMATED SECTION TITLES
+   ========================================================================== */
+.title-3d {
+  font-family: "Orbitron", "Audiowide", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.05),
+    0 2px 0 rgba(0,0,0,0.35),
+    0 4px 14px rgba(0, 245, 255, 0.28),
+    0 0 28px rgba(67, 199, 255, 0.25);
+  transform-style: preserve-3d;
+  perspective: 800px;
+  animation: title3dFloat 7s ease-in-out infinite;
+}
+@keyframes title3dFloat {
+  0%, 100% { transform: translateZ(0)   rotateX(0deg); }
+  50%      { transform: translateZ(6px) rotateX(2deg); }
+}
+
+/* ==========================================================================
+   DEV BOARDS SHOWCASE (3D tilt cards)
+   ========================================================================== */
+.boards-section {
+  position: relative;
+  padding: 110px 0 130px;
+  color: #ecf6ff;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 245, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(198, 107, 255, 0.18), transparent 45%),
+    linear-gradient(180deg, #04080d 0%, #07101a 60%, #04080d 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+.boards-bg {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(90deg,  rgba(67, 199, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(67, 199, 255, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+}
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 56px;
+  perspective: 1400px;
+}
+.board-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background:
+    linear-gradient(160deg, rgba(0, 245, 255, 0.06), rgba(255,255,255,0.02)),
+    rgba(4, 12, 18, 0.72);
+  border: 1px solid rgba(67, 199, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(0, 245, 255, 0.08);
+  transform-style: preserve-3d;
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  transition: transform 320ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 320ms ease, border-color 320ms ease;
+  animation: boardLevitate 6s ease-in-out infinite;
+  will-change: transform;
+}
+.board-card:nth-child(2) { animation-delay: 0.6s; }
+.board-card:nth-child(3) { animation-delay: 1.2s; }
+.board-card:nth-child(4) { animation-delay: 1.8s; }
+@keyframes boardLevitate {
+  0%, 100% { transform: translateY(0)    rotateX(0deg) rotateY(0deg); }
+  50%      { transform: translateY(-8px) rotateX(3deg) rotateY(-3deg); }
+}
+.board-card:hover {
+  border-color: rgba(0, 245, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 70px rgba(0, 245, 255, 0.35);
+  animation-play-state: paused;
+}
+.board-stage {
+  position: relative;
+  border-radius: 12px;
+  padding: 10px;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(0, 245, 255, 0.18), transparent 60%),
+    rgba(2, 8, 14, 0.7);
+  border: 1px solid rgba(67, 199, 255, 0.18);
+  overflow: hidden;
+  transform: translateZ(30px);
+}
+.board-stage::after {
+  /* glossy floor reflection */
+  content: "";
+  position: absolute; left: 8%; right: 8%; bottom: -4px; height: 18px;
+  background: radial-gradient(ellipse at center, rgba(0, 245, 255, 0.45), transparent 70%);
+  filter: blur(4px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.board-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+  animation: boardSpin 9s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes boardSpin {
+  0%, 100% { transform: rotateY(0deg)  rotateX(0deg); }
+  50%      { transform: rotateY(8deg)  rotateX(-4deg); }
+}
+.board-card-ai .board-svg { animation-duration: 7s; }
+.board-meta { transform: translateZ(20px); }
+.board-meta h3 {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 4px 0 6px;
+  background: linear-gradient(180deg, #ffffff 0%, #43c7ff 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.board-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-family: "Orbitron", monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #00f5ff;
+  border: 1px solid rgba(0, 245, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.08);
+}
+.board-meta p {
+  margin: 4px 0 0;
+  color: rgba(236, 246, 255, 0.78);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.board-card .chip-mcu {
+  animation: chipMcuGlow 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes chipMcuGlow {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50%      { filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.9)); }
+}
+
+/* ==========================================================================
+   CRAWLING ROBOTS — drift across the page on different bands
+   ========================================================================== */
+.crawl-bots {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  overflow: hidden;
+}
+.crawl-bot {
+  position: absolute;
+  width: 64px;
+  height: 48px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6)) drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
+  opacity: 0.85;
+}
+.crawl-bot svg { width: 100%; height: 100%; display: block; }
+.crawl-bot-1 {
+  top: 18vh;
+  animation: crawlAcrossLR 28s linear infinite;
+  animation-delay: -4s;
+}
+.crawl-bot-2 {
+  width: 78px; height: 52px;
+  top: 52vh;
+  animation: crawlAcrossRL 36s linear infinite;
+  animation-delay: -10s;
+}
+.crawl-bot-3 {
+  width: 56px; height: 48px;
+  top: 78vh;
+  animation: crawlAcrossLR 24s linear infinite;
+  animation-delay: -16s;
+}
+@keyframes crawlAcrossLR {
+  0%   { transform: translateX(-12vw) translateY(0)   rotate(-2deg); }
+  20%  { transform: translateX( 18vw) translateY(-10px) rotate(2deg); }
+  40%  { transform: translateX( 38vw) translateY(0)   rotate(-2deg); }
+  60%  { transform: translateX( 60vw) translateY(-12px) rotate(3deg); }
+  80%  { transform: translateX( 82vw) translateY(0)   rotate(-2deg); }
+  100% { transform: translateX(112vw) translateY(-6px) rotate(2deg); }
+}
+@keyframes crawlAcrossRL {
+  0%   { transform: translateX(112vw) translateY(0)   rotate(2deg)  scaleX(-1); }
+  50%  { transform: translateX( 50vw) translateY(-10px) rotate(-2deg) scaleX(-1); }
+  100% { transform: translateX(-12vw) translateY(0)   rotate(2deg)  scaleX(-1); }
+}
+/* spider-bot leg shimmy */
+.crawl-bot-1 .leg {
+  transform-box: fill-box;
+  transform-origin: 30px 38px;
+  animation: legWiggle 0.4s ease-in-out infinite;
+}
+.crawl-bot-1 .leg-l2, .crawl-bot-1 .leg-r2 { animation-delay: 0.1s; }
+.crawl-bot-1 .leg-l3, .crawl-bot-1 .leg-r3 { animation-delay: 0.2s; }
+@keyframes legWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(8deg); }
+}
+/* rover treads roll */
+.crawl-bot-2 .treads circle {
+  animation: treadRoll 0.6s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes treadRoll {
+  0%   { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-10px); opacity: 0.4; }
+}
+/* drone props spin */
+.crawl-bot-3 .props line {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: propSpin 0.15s linear infinite;
+}
+@keyframes propSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .crawl-bot-1 { top: 12vh; }
+  .crawl-bot-2 { top: 48vh; width: 64px; height: 44px; }
+  .crawl-bot-3 { top: 82vh; width: 48px; }
+  .hero-logo-xl { width: 120px !important; height: 120px !important; }
+  .brand-mark-xl { width: 56px !important; height: 56px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crawl-bot,
+  .board-card,
+  .board-svg,
+  .metal-text,
+  .metal-text::before,
+  .title-3d,
+  .brand-mark-xl img { animation: none !important; }
+}

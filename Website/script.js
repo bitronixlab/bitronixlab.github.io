@@ -335,7 +335,7 @@ if (contactForm && formStatus) {
     const subject = encodeURIComponent(`Bitronix Lab inquiry: ${type}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\n${message}`);
 
-    window.location.href = `mailto:hello@bitronixlab.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:bitronixlab@gmail.com?subject=${subject}&body=${body}`;
     formStatus.textContent = `Thanks, ${name}. Opening your email app now.`;
     contactForm.reset();
   });
@@ -415,4 +415,45 @@ if (contactForm && formStatus) {
 })();
 
 
-/* === Bitronix Lab � extra animations === */
+/* === Bitronix Lab — extra animations === */
+
+/* === Bitronix Lab — Board card 3D tilt === */
+(() => {
+  const cards = document.querySelectorAll("[data-board-tilt]");
+  if (!cards.length || reducedMotion.matches) return;
+
+  cards.forEach((card) => {
+    let rafId = 0;
+    let nextX = 0;
+    let nextY = 0;
+    let nextMx = 50;
+    let nextMy = 50;
+
+    const apply = () => {
+      card.style.setProperty("--by", `${nextX.toFixed(2)}deg`);
+      card.style.setProperty("--bx", `${nextY.toFixed(2)}deg`);
+      card.style.setProperty("--bmx", `${nextMx.toFixed(1)}%`);
+      card.style.setProperty("--bmy", `${nextMy.toFixed(1)}%`);
+      rafId = 0;
+    };
+
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      nextX = (px - 0.5) * 12;       // rotateY
+      nextY = (0.5 - py) * 10;       // rotateX
+      nextMx = px * 100;
+      nextMy = py * 100;
+      if (!rafId) rafId = window.requestAnimationFrame(apply);
+    });
+
+    const reset = () => {
+      nextX = 0; nextY = 0; nextMx = 50; nextMy = 50;
+      if (!rafId) rafId = window.requestAnimationFrame(apply);
+    };
+
+    card.addEventListener("pointerleave", reset);
+    card.addEventListener("blur", reset, true);
+  });
+})();

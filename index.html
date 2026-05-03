@@ -9,15 +9,18 @@
   <link rel="apple-touch-icon" href="Website/assets/brand_logo.png">
   <link rel="stylesheet" href="Website/styles.css">
   <link rel="stylesheet" href="css/extras.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas class="pcb-bg" data-pcb-bg aria-hidden="true"></canvas>
   <header class="site-header" data-header>
-    <a class="brand" href="#top" aria-label="Bitronix Lab home">
-      <span class="brand-mark brand-mark-logo brand-mark-photo">
+<a class="brand brand-xl" href="#top" aria-label="Bitronix Lab home">
+      <span class="brand-mark brand-mark-logo brand-mark-photo brand-mark-xl">
         <img src="Website/assets/brand_logo.png" alt="" aria-hidden="true">
       </span>
-      <span>Bitronix Lab</span>
+      <span class="brand-wordmark">Bitronix Lab</span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
@@ -52,15 +55,15 @@
       </div>
 
       <div class="hero-content">
-        <div class="hero-brand-card">
-          <img class="hero-logo hero-logo-photo" src="Website/assets/brand_logo.png" alt="Bitronix Lab logo">
+        <div class="hero-brand-card hero-brand-card-xl">
+          <img class="hero-logo hero-logo-photo hero-logo-xl" src="Website/assets/brand_logo.png" alt="Bitronix Lab logo">
           <div>
             <p class="eyebrow">Embedded systems + applied &amp; edge AI</p>
             <span class="brand-motto">Innovating ideas, empowering future</span>
           </div>
         </div>
         <p class="founder-kicker">Founded by Stijo Joseph</p>
-        <h1 id="hero-title"><span class="gradient-text">Bitronix Lab</span></h1>
+        <h1 id="hero-title" class="hero-title-metal"><span class="metal-text" data-text="Bitronix Lab">Bitronix Lab</span></h1>
         <p class="hero-typewriter" aria-live="polite">
           We build <span class="type-target" data-typewriter
             data-words='["intelligent embedded systems.","edge AI prototypes.","RTOS-driven firmware.","custom PCBs &amp; sensors.","hands-on training labs."]'>intelligent embedded systems.</span><span class="type-caret" aria-hidden="true"></span>
@@ -197,98 +200,7 @@
                     fill="none" stroke="#00f5ff" stroke-width="2"/>
             </g>
 
-            <!-- ====== ZOOM-IN WINDOW (right side, magnified internals) ====== -->
-            <g class="chip-zoom" filter="url(#neon)">
-              <!-- Magnifier lens lines from chip to zoom window -->
-              <line class="zoom-link" x1="498" y1="252" x2="430" y2="200" stroke="rgba(0,245,255,0.45)" stroke-dasharray="3 3"/>
-              <line class="zoom-link" x1="498" y1="348" x2="430" y2="500" stroke="rgba(0,245,255,0.45)" stroke-dasharray="3 3"/>
-
-              <!-- Zoom panel background -->
-              <rect class="zoom-panel" x="430" y="180" width="340" height="320" rx="14"
-                    fill="rgba(4,10,18,0.78)" stroke="rgba(0,245,255,0.45)" stroke-width="1.5"/>
-              <text x="445" y="200" fill="rgba(0,245,255,0.85)" font-size="10" font-family="monospace" letter-spacing="2">ZOOM · DIE INTERNALS</text>
-
-              <!-- Internal blocks -->
-              <!-- SENSOR I/O block -->
-              <g class="zblock zblock-io">
-                <rect x="445" y="215" width="80" height="40" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
-                <text x="485" y="240" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">GPIO/ADC</text>
-              </g>
-
-              <!-- NVIC block -->
-              <g class="zblock zblock-nvic">
-                <rect x="560" y="250" width="100" height="42" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
-                <text x="610" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">NVIC</text>
-                <text x="610" y="285" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">interrupt ctrl</text>
-              </g>
-
-              <!-- CPU CORE block -->
-              <g class="zblock zblock-cpu">
-                <rect x="540" y="305" width="100" height="55" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
-                <text x="590" y="328" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">CORTEX-M</text>
-                <text x="590" y="343" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">CPU CORE</text>
-                <!-- mini register bars -->
-                <g class="cpu-regs">
-                  <rect x="548" y="350" width="14" height="3" fill="#00f5ff"/>
-                  <rect x="566" y="350" width="14" height="3" fill="#43c7ff"/>
-                  <rect x="584" y="350" width="14" height="3" fill="#ffffff"/>
-                  <rect x="602" y="350" width="14" height="3" fill="#43c7ff"/>
-                  <rect x="620" y="350" width="14" height="3" fill="#00f5ff"/>
-                </g>
-              </g>
-
-              <!-- AI ENGINE block -->
-              <g class="zblock zblock-ai">
-                <rect x="445" y="375" width="120" height="55" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
-                <text x="505" y="395" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">AI ENGINE</text>
-                <text x="505" y="408" text-anchor="middle" fill="rgba(67,199,255,0.85)" font-size="8" font-family="monospace">edge inference</text>
-                <!-- tiny neural net inside -->
-                <g class="ai-mini" stroke="rgba(0,245,255,0.7)" fill="#ffffff">
-                  <circle cx="455" cy="420" r="1.6"/><circle cx="475" cy="416" r="1.6"/>
-                  <circle cx="495" cy="420" r="1.6"/><circle cx="515" cy="416" r="1.6"/>
-                  <circle cx="535" cy="420" r="1.6"/><circle cx="555" cy="416" r="1.6"/>
-                  <line x1="455" y1="420" x2="475" y2="416" stroke-width="0.5"/>
-                  <line x1="475" y1="416" x2="495" y2="420" stroke-width="0.5"/>
-                  <line x1="495" y1="420" x2="515" y2="416" stroke-width="0.5"/>
-                  <line x1="515" y1="416" x2="535" y2="420" stroke-width="0.5"/>
-                  <line x1="535" y1="420" x2="555" y2="416" stroke-width="0.5"/>
-                </g>
-              </g>
-
-              <!-- OUT GPIO block -->
-              <g class="zblock zblock-out">
-                <rect x="380" y="455" width="90" height="35" rx="6" fill="#04101a" stroke="url(#zoomGrad)" stroke-width="1.5"/>
-                <text x="425" y="477" text-anchor="middle" fill="#ffffff" font-size="11" font-family="monospace" font-weight="700">OUT · PWM</text>
-              </g>
-
-              <!-- Internal bus traces -->
-              <g class="zoom-bus" stroke="#1f7a8c" stroke-width="1.5" fill="none">
-                <use href="#busSensorNVIC"/>
-                <use href="#busNVICCPU"/>
-                <use href="#busCPUAI"/>
-                <use href="#busAIOut"/>
-              </g>
-              <!-- Bus labels -->
-              <text x="535" y="232" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">IRQ</text>
-              <text x="650" y="305" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">EXEC</text>
-              <text x="525" y="385" fill="rgba(67,199,255,0.7)" font-size="7" font-family="monospace">INFER</text>
-
-              <!-- Animated packets traveling through internals -->
-              <g class="zoom-packets" filter="url(#neon)">
-                <circle r="3" fill="#00f5ff">
-                  <animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#busSensorNVIC"/></animateMotion>
-                </circle>
-                <circle r="3" fill="#ffffff">
-                  <animateMotion dur="3.6s" begin="0.9s" repeatCount="indefinite"><mpath href="#busNVICCPU"/></animateMotion>
-                </circle>
-                <circle r="3" fill="#43c7ff">
-                  <animateMotion dur="3.6s" begin="1.8s" repeatCount="indefinite"><mpath href="#busCPUAI"/></animateMotion>
-                </circle>
-                <circle r="3" fill="#00f5ff">
-                  <animateMotion dur="3.6s" begin="2.7s" repeatCount="indefinite"><mpath href="#busAIOut"/></animateMotion>
-                </circle>
-              </g>
-            </g>
+            <!-- (Zoom-in die internals removed by request) -->
 
             <!-- ====== BIG ENERGY OUTPUT — expanding ring waves ====== -->
             <g class="energy-output" filter="url(#neon)">
@@ -359,7 +271,7 @@
       <div class="section-inner journey-inner">
         <div class="section-heading journey-heading">
           <p class="eyebrow">The Bitronix Journey</p>
-          <h2 id="journey-title">From a <span class="gradient-text">spark of an idea</span> to the world that learns from it.</h2>
+          <h2 id="journey-title" class="title-3d">From a <span class="gradient-text">spark of an idea</span> to the world that learns from it.</h2>
           <p>Every product we touch travels the same four chapters — a portfolio of how an idea becomes silicon, software, and a skill the world can use.</p>
         </div>
 
@@ -442,7 +354,7 @@
       <div class="section-inner about-layout">
         <div class="about-copy">
           <p class="eyebrow">About</p>
-          <h2 id="about-title">What is <span class="gradient-text">Bitronix Lab</span>?</h2>
+          <h2 id="about-title" class="title-3d">What is <span class="gradient-text">Bitronix Lab</span>?</h2>
           <p class="about-lead">
             Bitronix Lab is an embedded systems, applied AI and edge AI studio. We design intelligent electronics, write the firmware that brings them to life, and teach engineers how to build the same things themselves.
           </p>
@@ -501,7 +413,7 @@
 
         <div class="mission-content">
           <p class="eyebrow">Mission</p>
-          <h2 id="mission-title">Innovating ideas, empowering future.</h2>
+          <h2 id="mission-title" class="title-3d">Innovating ideas, empowering future.</h2>
           <p class="mission-copy">
             Bitronix Lab exists to make advanced electronics and AI practical for builders. We turn ideas into working circuits, teach the thinking behind them, and help teams move from prototype energy to reliable products.
           </p>
@@ -545,7 +457,7 @@
       <div class="section-inner">
         <div class="section-heading">
           <p class="eyebrow">Design</p>
-          <h2 id="services-title">Engineering support for intelligent hardware</h2>
+          <h2 id="services-title" class="title-3d">Engineering support for intelligent hardware</h2>
           <p>Focused help for teams building connected products, automation systems, sensors, and AI-enabled devices.</p>
         </div>
 
@@ -688,12 +600,171 @@
       </div>
     </section>
 
+    <!-- ====== DEV BOARDS SHOWCASE (3D tilt) ====== -->
+    <section class="boards-section reveal-up" id="boards" aria-labelledby="boards-title">
+      <div class="boards-bg" aria-hidden="true"></div>
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Hardware</p>
+          <h2 id="boards-title" class="title-3d">Dev boards we <span class="gradient-text">build &amp; deploy on</span></h2>
+          <p>From classic microcontrollers to modern AI accelerators — every board in our lab, levitating in 3D.</p>
+        </div>
+
+        <div class="boards-grid">
+          <!-- STM32 -->
+          <article class="board-card" data-tilt-3d data-magnetic>
+            <div class="board-stage">
+              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="pcbStm" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#0a3a2a"/><stop offset="100%" stop-color="#04201a"/>
+                  </linearGradient>
+                </defs>
+                <rect x="6" y="10" width="208" height="120" rx="10" fill="url(#pcbStm)" stroke="#1f7a8c" stroke-width="1.2"/>
+                <g stroke="rgba(67,199,255,0.45)" stroke-width="0.6" fill="none">
+                  <path d="M20 30 H80 L95 45 H180"/><path d="M20 60 H110"/><path d="M20 90 H80 L95 75 H180"/>
+                </g>
+                <g fill="#0d1b14" stroke="#43c7ff" stroke-width="0.8">
+                  <rect x="14" y="20" width="14" height="8" rx="1"/>
+                  <rect x="14" y="50" width="14" height="8" rx="1"/>
+                  <rect x="14" y="80" width="14" height="8" rx="1"/>
+                  <rect x="14" y="110" width="14" height="8" rx="1"/>
+                  <rect x="190" y="20" width="14" height="8" rx="1"/>
+                  <rect x="190" y="50" width="14" height="8" rx="1"/>
+                  <rect x="190" y="80" width="14" height="8" rx="1"/>
+                  <rect x="190" y="110" width="14" height="8" rx="1"/>
+                </g>
+                <rect class="chip-mcu" x="80" y="48" width="60" height="44" rx="4" fill="#04101a" stroke="#00f5ff" stroke-width="1.2"/>
+                <text x="110" y="68" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">STM32</text>
+                <text x="110" y="80" text-anchor="middle" fill="#43c7ff" font-size="6" font-family="monospace">F4 · ARM Cortex-M</text>
+                <circle cx="160" cy="30" r="3" fill="#ff5e3a"><animate attributeName="opacity" values="1;0.2;1" dur="1.4s" repeatCount="indefinite"/></circle>
+                <circle cx="172" cy="30" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.4s" repeatCount="indefinite"/></circle>
+              </svg>
+            </div>
+            <div class="board-meta">
+              <span class="board-tag">ARM · 32-bit</span>
+              <h3>STM32</h3>
+              <p>Bare-metal, HAL, FreeRTOS — clocks, DMA, NVIC, peripherals at register level.</p>
+            </div>
+          </article>
+
+          <!-- ESP32 -->
+          <article class="board-card" data-tilt-3d data-magnetic>
+            <div class="board-stage">
+              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="10" width="208" height="120" rx="10" fill="#1a1a2a" stroke="#5b6cff" stroke-width="1.2"/>
+                <g stroke="rgba(140,160,255,0.4)" stroke-width="0.6" fill="none">
+                  <path d="M20 30 H100 L115 45 H180"/><path d="M20 60 H120"/><path d="M20 95 H100 L115 80 H180"/>
+                </g>
+                <g fill="#101226" stroke="#8aa0ff" stroke-width="0.8">
+                  <rect x="14" y="22" width="10" height="6" rx="1"/>
+                  <rect x="14" y="40" width="10" height="6" rx="1"/>
+                  <rect x="14" y="58" width="10" height="6" rx="1"/>
+                  <rect x="14" y="76" width="10" height="6" rx="1"/>
+                  <rect x="14" y="94" width="10" height="6" rx="1"/>
+                  <rect x="14" y="112" width="10" height="6" rx="1"/>
+                  <rect x="196" y="22" width="10" height="6" rx="1"/>
+                  <rect x="196" y="40" width="10" height="6" rx="1"/>
+                  <rect x="196" y="58" width="10" height="6" rx="1"/>
+                  <rect x="196" y="76" width="10" height="6" rx="1"/>
+                  <rect x="196" y="94" width="10" height="6" rx="1"/>
+                  <rect x="196" y="112" width="10" height="6" rx="1"/>
+                </g>
+                <rect class="chip-mcu" x="70" y="42" width="80" height="56" rx="4" fill="#0a0c1c" stroke="#5b6cff" stroke-width="1.2"/>
+                <text x="110" y="64" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">ESP32</text>
+                <text x="110" y="76" text-anchor="middle" fill="#8aa0ff" font-size="6" font-family="monospace">Wi-Fi · BT · Dual-core</text>
+                <!-- antenna trace -->
+                <path d="M150 22 q12 -6 24 0 q-2 -10 -12 -10 q-10 0 -12 10 z" fill="none" stroke="#8aa0ff" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="board-meta">
+              <span class="board-tag">Wi-Fi · BLE</span>
+              <h3>ESP32</h3>
+              <p>Connected sensors, MQTT, OTA firmware, ESP-IDF + Arduino — IoT to the edge.</p>
+            </div>
+          </article>
+
+          <!-- Raspberry Pi Pico -->
+          <article class="board-card" data-tilt-3d data-magnetic>
+            <div class="board-stage">
+              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="10" width="208" height="120" rx="14" fill="#0d2418" stroke="#43c7ff" stroke-width="1.2"/>
+                <g stroke="rgba(67,199,255,0.4)" stroke-width="0.6" fill="none">
+                  <path d="M20 35 H80 L95 50 H180"/><path d="M20 70 H110"/><path d="M20 100 H80 L95 85 H180"/>
+                </g>
+                <g fill="#08180f" stroke="#aef0c2" stroke-width="0.8">
+                  <circle cx="18" cy="22" r="3"/><circle cx="18" cy="40" r="3"/><circle cx="18" cy="58" r="3"/>
+                  <circle cx="18" cy="76" r="3"/><circle cx="18" cy="94" r="3"/><circle cx="18" cy="112" r="3"/>
+                  <circle cx="202" cy="22" r="3"/><circle cx="202" cy="40" r="3"/><circle cx="202" cy="58" r="3"/>
+                  <circle cx="202" cy="76" r="3"/><circle cx="202" cy="94" r="3"/><circle cx="202" cy="112" r="3"/>
+                </g>
+                <rect class="chip-mcu" x="85" y="55" width="50" height="40" rx="4" fill="#04101a" stroke="#aef0c2" stroke-width="1.2"/>
+                <text x="110" y="74" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">RP2040</text>
+                <text x="110" y="86" text-anchor="middle" fill="#aef0c2" font-size="6" font-family="monospace">Pi Pico · Dual M0+</text>
+                <!-- USB cutout -->
+                <rect x="95" y="14" width="30" height="10" rx="2" fill="#1a1a1a" stroke="#aef0c2" stroke-width="0.8"/>
+              </svg>
+            </div>
+            <div class="board-meta">
+              <span class="board-tag">RP2040 · PIO</span>
+              <h3>Raspberry Pi Pico</h3>
+              <p>MicroPython, C/C++ SDK, programmable IO — playful prototyping with serious peripherals.</p>
+            </div>
+          </article>
+
+          <!-- AI / Neural board -->
+          <article class="board-card board-card-ai" data-tilt-3d data-magnetic>
+            <div class="board-stage">
+              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="pcbAi" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#2a0a3a"/><stop offset="100%" stop-color="#0a0420"/>
+                  </linearGradient>
+                  <radialGradient id="npuGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ff66ff" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#ff66ff" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <rect x="6" y="10" width="208" height="120" rx="10" fill="url(#pcbAi)" stroke="#c66bff" stroke-width="1.2"/>
+                <circle cx="110" cy="70" r="50" fill="url(#npuGlow)"/>
+                <g stroke="rgba(198,107,255,0.45)" stroke-width="0.6" fill="none">
+                  <path d="M20 30 H80 L95 45 H180"/><path d="M20 60 H110"/><path d="M20 100 H80 L95 85 H180"/>
+                </g>
+                <rect class="chip-mcu" x="80" y="50" width="60" height="44" rx="4" fill="#150825" stroke="#ff8aff" stroke-width="1.2"/>
+                <text x="110" y="70" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">NPU</text>
+                <text x="110" y="82" text-anchor="middle" fill="#ff8aff" font-size="6" font-family="monospace">edge AI · TOPS</text>
+                <!-- mini neural net -->
+                <g stroke="#ff8aff" fill="#ffffff">
+                  <circle cx="40" cy="115" r="2"/><circle cx="60" cy="120" r="2"/>
+                  <circle cx="80" cy="115" r="2"/><circle cx="100" cy="120" r="2"/>
+                  <circle cx="120" cy="115" r="2"/><circle cx="140" cy="120" r="2"/>
+                  <circle cx="160" cy="115" r="2"/><circle cx="180" cy="120" r="2"/>
+                  <line x1="40" y1="115" x2="60" y2="120" stroke-width="0.4"/>
+                  <line x1="60" y1="120" x2="80" y2="115" stroke-width="0.4"/>
+                  <line x1="80" y1="115" x2="100" y2="120" stroke-width="0.4"/>
+                  <line x1="100" y1="120" x2="120" y2="115" stroke-width="0.4"/>
+                  <line x1="120" y1="115" x2="140" y2="120" stroke-width="0.4"/>
+                  <line x1="140" y1="120" x2="160" y2="115" stroke-width="0.4"/>
+                  <line x1="160" y1="115" x2="180" y2="120" stroke-width="0.4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="board-meta">
+              <span class="board-tag">Neural · NPU</span>
+              <h3>AI Dev Boards</h3>
+              <p>Jetson, Coral, K210, Kendryte — vision pipelines, TinyML and on-device inference.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="topics-section reveal-up" id="topics" aria-labelledby="topics-title">
       <div class="topics-bg" aria-hidden="true"></div>
       <div class="section-inner">
         <div class="section-heading">
           <p class="eyebrow">Explore</p>
-          <h2 id="topics-title">Topics we <span class="gradient-text">teach &amp; build</span></h2>
+          <h2 id="topics-title" class="title-3d">Topics we <span class="gradient-text">teach &amp; build</span></h2>
           <p>Deep-dive sub-pages on every layer of an embedded product — from the silicon up to the cloud and the AI that lives at the edge.</p>
         </div>
 
@@ -759,7 +830,7 @@
       <div class="section-inner">
         <div class="section-heading">
           <p class="eyebrow">Read</p>
-          <h2 id="blog-title">From the <span class="gradient-text">Bitronix blog</span></h2>
+          <h2 id="blog-title" class="title-3d">From the <span class="gradient-text">Bitronix blog</span></h2>
           <p>Field notes, tutorials and deep dives — written for engineers who like to actually build things.</p>
         </div>
 
@@ -797,7 +868,7 @@
       <div class="section-inner yt-inner">
         <div class="section-heading yt-heading">
           <p class="eyebrow">Watch &amp; Learn</p>
-          <h2 id="yt-title">STM32 deep dives on <span class="gradient-text">YouTube</span></h2>
+          <h2 id="yt-title" class="title-3d">STM32 deep dives on <span class="gradient-text">YouTube</span></h2>
           <p>Hands-on tutorials, register-level walkthroughs and project builds from the Bitronix Lab channel — streaming straight from <a class="yt-handle" href="https://www.youtube.com/@BITRONIXLAB" target="_blank" rel="noopener">@BITRONIXLAB</a>.</p>
         </div>
 
@@ -994,6 +1065,75 @@
       <line x1="48" y1="14" x2="48" y2="4"  stroke="#43c7ff" stroke-width="1"/>
       <circle cx="48" cy="3" r="1.5" fill="#ffffff"/>
     </svg>
+  <!-- ====== CRAWLING ROBOTS (drift across page periodically) ====== -->
+  <div class="crawl-bots" aria-hidden="true">
+    <!-- Bot 1: spider-bot, top band -->
+    <div class="crawl-bot crawl-bot-1">
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- legs -->
+        <g stroke="#43c7ff" stroke-width="2" fill="none" stroke-linecap="round" class="bot-legs">
+          <path class="leg leg-l1" d="M30 32 L14 20"/>
+          <path class="leg leg-l2" d="M30 38 L10 38"/>
+          <path class="leg leg-l3" d="M30 44 L14 56"/>
+          <path class="leg leg-r1" d="M50 32 L66 20"/>
+          <path class="leg leg-r2" d="M50 38 L70 38"/>
+          <path class="leg leg-r3" d="M50 44 L66 56"/>
+        </g>
+        <!-- body -->
+        <ellipse cx="40" cy="38" rx="14" ry="10" fill="#061421" stroke="#00f5ff" stroke-width="1.5"/>
+        <!-- eye -->
+        <circle cx="40" cy="36" r="4" fill="#00f5ff"/>
+        <circle cx="41" cy="35" r="1.4" fill="#ffffff"/>
+        <!-- antennas -->
+        <line x1="34" y1="28" x2="30" y2="20" stroke="#43c7ff" stroke-width="1.2"/>
+        <line x1="46" y1="28" x2="50" y2="20" stroke="#43c7ff" stroke-width="1.2"/>
+        <circle cx="30" cy="20" r="1.5" fill="#ffffff"/>
+        <circle cx="50" cy="20" r="1.5" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- Bot 2: tracked rover, mid band -->
+    <div class="crawl-bot crawl-bot-2">
+      <svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- treads -->
+        <rect x="6" y="40" width="78" height="14" rx="7" fill="#04101a" stroke="#43c7ff" stroke-width="1.2"/>
+        <g class="treads" fill="#43c7ff">
+          <circle cx="14" cy="47" r="2"/><circle cx="24" cy="47" r="2"/>
+          <circle cx="34" cy="47" r="2"/><circle cx="44" cy="47" r="2"/>
+          <circle cx="54" cy="47" r="2"/><circle cx="64" cy="47" r="2"/>
+          <circle cx="74" cy="47" r="2"/>
+        </g>
+        <!-- chassis -->
+        <rect x="14" y="22" width="62" height="20" rx="4" fill="#061421" stroke="#00f5ff" stroke-width="1.5"/>
+        <rect x="20" y="26" width="50" height="12" rx="2" fill="none" stroke="rgba(0,245,255,0.4)"/>
+        <!-- sensor mast -->
+        <line x1="45" y1="22" x2="45" y2="10" stroke="#43c7ff" stroke-width="1.2"/>
+        <circle cx="45" cy="9" r="3" fill="#00f5ff"><animate attributeName="opacity" values="1;0.3;1" dur="0.9s" repeatCount="indefinite"/></circle>
+        <!-- arm -->
+        <line x1="70" y1="30" x2="84" y2="22" stroke="#43c7ff" stroke-width="1.5"/>
+        <circle cx="84" cy="22" r="2" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- Bot 3: tiny drone-bot, lower band -->
+    <div class="crawl-bot crawl-bot-3">
+      <svg viewBox="0 0 70 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- propellers -->
+        <g class="props" stroke="#43c7ff" stroke-width="1.2">
+          <line x1="15" y1="20" x2="5"  y2="14"/><line x1="15" y1="20" x2="25" y2="14"/>
+          <line x1="55" y1="20" x2="45" y2="14"/><line x1="55" y1="20" x2="65" y2="14"/>
+        </g>
+        <circle cx="15" cy="20" r="2" fill="#ffffff"/>
+        <circle cx="55" cy="20" r="2" fill="#ffffff"/>
+        <!-- body -->
+        <rect x="22" y="22" width="26" height="16" rx="6" fill="#061421" stroke="#00f5ff" stroke-width="1.5"/>
+        <circle cx="35" cy="30" r="3" fill="#00f5ff"/>
+        <!-- legs -->
+        <line x1="26" y1="38" x2="22" y2="46" stroke="#43c7ff" stroke-width="1.2"/>
+        <line x1="44" y1="38" x2="48" y2="46" stroke="#43c7ff" stroke-width="1.2"/>
+      </svg>
+    </div>
   </div>
+
 </body>
 </html>
