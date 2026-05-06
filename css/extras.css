@@ -2199,6 +2199,23 @@ body > footer { position: relative; z-index: 1; }
   50%      { transform: rotateY(8deg)  rotateX(-4deg); }
 }
 .board-card-ai .board-svg { animation-duration: 7s; }
+/* Real photo variant of the board "svg" slot */
+.board-photo {
+  aspect-ratio: 220 / 140;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  background: #04101a;
+}
+/* ESP32 photo is taller than the 220:140 stage — show the entire board
+   instead of cropping the top/bottom off. */
+.board-photo-esp32 {
+  object-fit: contain;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(91, 108, 255, 0.18), transparent 70%),
+    #04101a;
+  padding: 4px;
+}
 .board-meta { transform: translateZ(20px); }
 .board-meta h3 {
   font-family: "Orbitron", system-ui, sans-serif;
@@ -2335,4 +2352,75 @@ body > footer { position: relative; z-index: 1; }
   .metal-text::before,
   .title-3d,
   .brand-mark-xl img { animation: none !important; }
+}
+
+
+/* ==========================================================================
+   FOUNDER PHOTO — replaces SJ avatar with real portrait, neon framed
+   ========================================================================== */
+.founder-card-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+.founder-photo-frame {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  padding: 6px;
+  background:
+    conic-gradient(from 0deg, #00f5ff, #43c7ff, #c66bff, #00f5ff);
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.4),
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(0, 245, 255, 0.45);
+  isolation: isolate;
+}
+.founder-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: #04101a;
+  /* Crisp rendering: no transforms or borders that force GPU rasterization blur. */
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.35);
+  image-rendering: auto;
+}
+.founder-photo-ring,
+.founder-photo-ring-2 {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 245, 255, 0.45);
+  pointer-events: none;
+}
+.founder-photo-ring-2 {
+  inset: -28px;
+  border-style: dotted;
+  border-color: rgba(198, 107, 255, 0.45);
+}
+@keyframes founderRingSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes founderCounterSpin {
+  to { transform: rotate(-360deg); }
+}
+@keyframes founderBreath {
+  0%, 100% { filter: drop-shadow(0 0 8px  rgba(0, 245, 255, 0.35)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(0, 245, 255, 0.7)); }
+}
+
+@media (max-width: 720px) {
+  .founder-photo-frame { width: 180px; height: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .founder-photo-frame,
+  .founder-photo,
+  .founder-photo-ring,
+  .founder-photo-ring-2 { animation: none !important; }
 }

@@ -614,32 +614,7 @@
           <!-- STM32 -->
           <article class="board-card" data-tilt-3d data-magnetic>
             <div class="board-stage">
-              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
-                  <linearGradient id="pcbStm" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#0a3a2a"/><stop offset="100%" stop-color="#04201a"/>
-                  </linearGradient>
-                </defs>
-                <rect x="6" y="10" width="208" height="120" rx="10" fill="url(#pcbStm)" stroke="#1f7a8c" stroke-width="1.2"/>
-                <g stroke="rgba(67,199,255,0.45)" stroke-width="0.6" fill="none">
-                  <path d="M20 30 H80 L95 45 H180"/><path d="M20 60 H110"/><path d="M20 90 H80 L95 75 H180"/>
-                </g>
-                <g fill="#0d1b14" stroke="#43c7ff" stroke-width="0.8">
-                  <rect x="14" y="20" width="14" height="8" rx="1"/>
-                  <rect x="14" y="50" width="14" height="8" rx="1"/>
-                  <rect x="14" y="80" width="14" height="8" rx="1"/>
-                  <rect x="14" y="110" width="14" height="8" rx="1"/>
-                  <rect x="190" y="20" width="14" height="8" rx="1"/>
-                  <rect x="190" y="50" width="14" height="8" rx="1"/>
-                  <rect x="190" y="80" width="14" height="8" rx="1"/>
-                  <rect x="190" y="110" width="14" height="8" rx="1"/>
-                </g>
-                <rect class="chip-mcu" x="80" y="48" width="60" height="44" rx="4" fill="#04101a" stroke="#00f5ff" stroke-width="1.2"/>
-                <text x="110" y="68" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">STM32</text>
-                <text x="110" y="80" text-anchor="middle" fill="#43c7ff" font-size="6" font-family="monospace">F4 · ARM Cortex-M</text>
-                <circle cx="160" cy="30" r="3" fill="#ff5e3a"><animate attributeName="opacity" values="1;0.2;1" dur="1.4s" repeatCount="indefinite"/></circle>
-                <circle cx="172" cy="30" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.4s" repeatCount="indefinite"/></circle>
-              </svg>
+              <img class="board-svg board-photo" src="stm32_image.jpg" alt="STM32 development board" loading="lazy" decoding="async">
             </div>
             <div class="board-meta">
               <span class="board-tag">ARM · 32-bit</span>
@@ -651,31 +626,7 @@
           <!-- ESP32 -->
           <article class="board-card" data-tilt-3d data-magnetic>
             <div class="board-stage">
-              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="6" y="10" width="208" height="120" rx="10" fill="#1a1a2a" stroke="#5b6cff" stroke-width="1.2"/>
-                <g stroke="rgba(140,160,255,0.4)" stroke-width="0.6" fill="none">
-                  <path d="M20 30 H100 L115 45 H180"/><path d="M20 60 H120"/><path d="M20 95 H100 L115 80 H180"/>
-                </g>
-                <g fill="#101226" stroke="#8aa0ff" stroke-width="0.8">
-                  <rect x="14" y="22" width="10" height="6" rx="1"/>
-                  <rect x="14" y="40" width="10" height="6" rx="1"/>
-                  <rect x="14" y="58" width="10" height="6" rx="1"/>
-                  <rect x="14" y="76" width="10" height="6" rx="1"/>
-                  <rect x="14" y="94" width="10" height="6" rx="1"/>
-                  <rect x="14" y="112" width="10" height="6" rx="1"/>
-                  <rect x="196" y="22" width="10" height="6" rx="1"/>
-                  <rect x="196" y="40" width="10" height="6" rx="1"/>
-                  <rect x="196" y="58" width="10" height="6" rx="1"/>
-                  <rect x="196" y="76" width="10" height="6" rx="1"/>
-                  <rect x="196" y="94" width="10" height="6" rx="1"/>
-                  <rect x="196" y="112" width="10" height="6" rx="1"/>
-                </g>
-                <rect class="chip-mcu" x="70" y="42" width="80" height="56" rx="4" fill="#0a0c1c" stroke="#5b6cff" stroke-width="1.2"/>
-                <text x="110" y="64" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">ESP32</text>
-                <text x="110" y="76" text-anchor="middle" fill="#8aa0ff" font-size="6" font-family="monospace">Wi-Fi · BT · Dual-core</text>
-                <!-- antenna trace -->
-                <path d="M150 22 q12 -6 24 0 q-2 -10 -12 -10 q-10 0 -12 10 z" fill="none" stroke="#8aa0ff" stroke-width="1"/>
-              </svg>
+              <img class="board-svg board-photo board-photo-esp32" src="esp32_image.jpg" alt="ESP32 Wi-Fi and Bluetooth development board" loading="lazy" decoding="async">
             </div>
             <div class="board-meta">
               <span class="board-tag">Wi-Fi · BLE</span>
@@ -687,23 +638,7 @@
           <!-- Raspberry Pi Pico -->
           <article class="board-card" data-tilt-3d data-magnetic>
             <div class="board-stage">
-              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="6" y="10" width="208" height="120" rx="14" fill="#0d2418" stroke="#43c7ff" stroke-width="1.2"/>
-                <g stroke="rgba(67,199,255,0.4)" stroke-width="0.6" fill="none">
-                  <path d="M20 35 H80 L95 50 H180"/><path d="M20 70 H110"/><path d="M20 100 H80 L95 85 H180"/>
-                </g>
-                <g fill="#08180f" stroke="#aef0c2" stroke-width="0.8">
-                  <circle cx="18" cy="22" r="3"/><circle cx="18" cy="40" r="3"/><circle cx="18" cy="58" r="3"/>
-                  <circle cx="18" cy="76" r="3"/><circle cx="18" cy="94" r="3"/><circle cx="18" cy="112" r="3"/>
-                  <circle cx="202" cy="22" r="3"/><circle cx="202" cy="40" r="3"/><circle cx="202" cy="58" r="3"/>
-                  <circle cx="202" cy="76" r="3"/><circle cx="202" cy="94" r="3"/><circle cx="202" cy="112" r="3"/>
-                </g>
-                <rect class="chip-mcu" x="85" y="55" width="50" height="40" rx="4" fill="#04101a" stroke="#aef0c2" stroke-width="1.2"/>
-                <text x="110" y="74" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">RP2040</text>
-                <text x="110" y="86" text-anchor="middle" fill="#aef0c2" font-size="6" font-family="monospace">Pi Pico · Dual M0+</text>
-                <!-- USB cutout -->
-                <rect x="95" y="14" width="30" height="10" rx="2" fill="#1a1a1a" stroke="#aef0c2" stroke-width="0.8"/>
-              </svg>
+              <img class="board-svg board-photo" src="pico.jpg" alt="Raspberry Pi Pico RP2040 development board" loading="lazy" decoding="async">
             </div>
             <div class="board-meta">
               <span class="board-tag">RP2040 · PIO</span>
@@ -715,39 +650,7 @@
           <!-- AI / Neural board -->
           <article class="board-card board-card-ai" data-tilt-3d data-magnetic>
             <div class="board-stage">
-              <svg class="board-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
-                  <linearGradient id="pcbAi" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#2a0a3a"/><stop offset="100%" stop-color="#0a0420"/>
-                  </linearGradient>
-                  <radialGradient id="npuGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#ff66ff" stop-opacity="0.7"/>
-                    <stop offset="100%" stop-color="#ff66ff" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
-                <rect x="6" y="10" width="208" height="120" rx="10" fill="url(#pcbAi)" stroke="#c66bff" stroke-width="1.2"/>
-                <circle cx="110" cy="70" r="50" fill="url(#npuGlow)"/>
-                <g stroke="rgba(198,107,255,0.45)" stroke-width="0.6" fill="none">
-                  <path d="M20 30 H80 L95 45 H180"/><path d="M20 60 H110"/><path d="M20 100 H80 L95 85 H180"/>
-                </g>
-                <rect class="chip-mcu" x="80" y="50" width="60" height="44" rx="4" fill="#150825" stroke="#ff8aff" stroke-width="1.2"/>
-                <text x="110" y="70" text-anchor="middle" fill="#ffffff" font-size="9" font-family="monospace" font-weight="700">NPU</text>
-                <text x="110" y="82" text-anchor="middle" fill="#ff8aff" font-size="6" font-family="monospace">edge AI · TOPS</text>
-                <!-- mini neural net -->
-                <g stroke="#ff8aff" fill="#ffffff">
-                  <circle cx="40" cy="115" r="2"/><circle cx="60" cy="120" r="2"/>
-                  <circle cx="80" cy="115" r="2"/><circle cx="100" cy="120" r="2"/>
-                  <circle cx="120" cy="115" r="2"/><circle cx="140" cy="120" r="2"/>
-                  <circle cx="160" cy="115" r="2"/><circle cx="180" cy="120" r="2"/>
-                  <line x1="40" y1="115" x2="60" y2="120" stroke-width="0.4"/>
-                  <line x1="60" y1="120" x2="80" y2="115" stroke-width="0.4"/>
-                  <line x1="80" y1="115" x2="100" y2="120" stroke-width="0.4"/>
-                  <line x1="100" y1="120" x2="120" y2="115" stroke-width="0.4"/>
-                  <line x1="120" y1="115" x2="140" y2="120" stroke-width="0.4"/>
-                  <line x1="140" y1="120" x2="160" y2="115" stroke-width="0.4"/>
-                  <line x1="160" y1="115" x2="180" y2="120" stroke-width="0.4"/>
-                </g>
-              </svg>
+              <img class="board-svg board-photo" src="ai_chip.jpg" alt="AI accelerator / NPU dev board" loading="lazy" decoding="async">
             </div>
             <div class="board-meta">
               <span class="board-tag">Neural · NPU</span>
@@ -935,9 +838,11 @@
 
     <section class="founder-section" id="founder" aria-labelledby="founder-title">
       <div class="section-inner founder-layout">
-        <div class="founder-card" data-magnetic>
-          <div class="founder-avatar" aria-hidden="true">
-            <span>SJ</span>
+        <div class="founder-card founder-card-photo" data-magnetic data-tilt-3d>
+          <div class="founder-photo-frame" aria-hidden="true">
+            <img class="founder-photo" src="Website/assets/founder.png" alt="Stijo Joseph, founder of Bitronix Lab" width="480" height="480" decoding="async" loading="lazy">
+            <span class="founder-photo-ring"></span>
+            <span class="founder-photo-ring founder-photo-ring-2"></span>
           </div>
           <div class="founder-signature">
             <span>Founder</span>

@@ -2214,13 +2214,11 @@ h3 {
 
 .founder-avatar::before {
   inset: -20px;
-  animation: orbitSpin 15s linear infinite;
 }
 
 .founder-avatar::after {
   inset: -38px;
   border-style: dashed;
-  animation: orbitSpin 22s linear infinite reverse;
 }
 
 .founder-avatar span {
